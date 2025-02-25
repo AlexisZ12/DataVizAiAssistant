@@ -69,7 +69,6 @@ def BarInterface(X_value, Y_value, Y_value_label,
             width=bar_width,
             color=COLOR[B_color[i]],
             hatch=HATCHSTYLE[H_style[i]],
-            bottom=Y_min,
             label=Y_value_label[i]
         )
 

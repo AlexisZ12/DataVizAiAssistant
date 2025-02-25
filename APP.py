@@ -1375,7 +1375,7 @@ def main():
                     next = input_group(
                         "Continuing modifications",
                         [
-                            textarea("Please describe the request you are modifying:", rows = 15, placeholder="Your request", name="demand"),
+                            textarea("Please describe the request you are modifying:", rows = 5, placeholder="Your request", name="demand"),
                             actions(buttons=[{'label': 'Edit the format', 'value': 1},
                                              {'label': 'Edit the data', 'value': 2},
                                              {'label': 'Show the figure', 'value': 0},
@@ -1767,7 +1767,7 @@ def main():
                     next = input_group(
                         "Continuing modifications",
                         [
-                            textarea("Please describe the request you are modifying:", rows = 15, placeholder="请描述您的要求：", name="demand"),
+                            textarea("Please describe the request you are modifying:", rows = 5, placeholder="请描述您的要求：", name="demand"),
                             actions(buttons=[{'label': 'Edit the format', 'value': 1},
                                              {'label': 'Edit the data', 'value': 2},
                                              {'label': 'Show the figure', 'value': 0},
