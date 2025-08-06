@@ -8,7 +8,6 @@ from pywebio.output import *
 
 with open('config/configExample.json', 'r', encoding = 'utf-8') as jsExample:
     jsEx = json.load(jsExample)
-
 OpenAiConfigExample = jsEx['OpenAiConfigExample']
 DeepSeekConfigExample = jsEx['DeepSeekConfigExample']
 OllamaConfigExample = jsEx['OllamaConfigExample']
@@ -60,19 +59,19 @@ with open('prompt/a/prompt3a5.txt', 'r', encoding='utf-8') as file:
     prompt3a5 = file.read()
 with open('prompt/a/prompt3a6.txt', 'r', encoding='utf-8') as file:
     prompt3a6 = file.read()
-with open('prompt/a/prompt3b0.txt', 'r', encoding='utf-8') as file:
+with open('prompt/b/prompt3b0.txt', 'r', encoding='utf-8') as file:
     prompt3b0 = file.read()
-with open('prompt/a/prompt3b1.txt', 'r', encoding='utf-8') as file:
+with open('prompt/b/prompt3b1.txt', 'r', encoding='utf-8') as file:
     prompt3b1 = file.read()
-with open('prompt/a/prompt3b2.txt', 'r', encoding='utf-8') as file:
+with open('prompt/b/prompt3b2.txt', 'r', encoding='utf-8') as file:
     prompt3b2 = file.read()
-with open('prompt/a/prompt3b3.txt', 'r', encoding='utf-8') as file:
+with open('prompt/b/prompt3b3.txt', 'r', encoding='utf-8') as file:
     prompt3b3 = file.read()
-with open('prompt/a/prompt3b4.txt', 'r', encoding='utf-8') as file:
+with open('prompt/b/prompt3b4.txt', 'r', encoding='utf-8') as file:
     prompt3b4 = file.read()
-with open('prompt/a/prompt3b5.txt', 'r', encoding='utf-8') as file:
+with open('prompt/b/prompt3b5.txt', 'r', encoding='utf-8') as file:
     prompt3b5 = file.read()
-with open('prompt/a/prompt3b6.txt', 'r', encoding='utf-8') as file:
+with open('prompt/b/prompt3b6.txt', 'r', encoding='utf-8') as file:
     prompt3b6 = file.read()
 with open('prompt/a/prompt4a.txt', 'r', encoding='utf-8') as file:
     prompt4a = file.read()
@@ -86,9 +85,9 @@ with open('prompt/a/prompt_newa1.txt', 'r', encoding='utf-8') as file:
     prompt_newa1 = file.read()
 with open('prompt/a/prompt_newa2.txt', 'r', encoding='utf-8') as file:
     prompt_newa2 = file.read()
-with open('prompt/b/prompt_newa1.txt', 'r', encoding='utf-8') as file:
+with open('prompt/b/prompt_newb1.txt', 'r', encoding='utf-8') as file:
     prompt_newb1 = file.read()
-with open('prompt/a/prompt_newb2.txt', 'r', encoding='utf-8') as file:
+with open('prompt/b/prompt_newb2.txt', 'r', encoding='utf-8') as file:
     prompt_newb2 = file.read()
     
 """
