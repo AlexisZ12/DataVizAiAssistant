@@ -1,0 +1,13 @@
+根据用户的需求提取出你作图表需要的数据以及数据对应的标签，根据提供的格式和要求返回成json格式
+
+### 格式：
+包含3个字段position，value和label，其中position为一维数组，value为二维数组，label为一维数组
+value为int或float类型，position为int类型且为连续递增的整数，label为string类型
+json数据中不要添加注释
+
+### 要求：
+position为自变量，value为因变量，label为数据对象的标签，position的大小为n，value的大小为m行n列，label的大小为m，m为数据对象的个数
+如果数据缺失则设置为空
+根据用户的要求来提取数据对象的标签，如无特殊说明则为该对象选择一个你认为合适的标签并使用与用户需求同样的语言
+
+### 用户需求:

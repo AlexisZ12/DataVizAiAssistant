@@ -6,39 +6,48 @@ import io
 from pywebio.input import *
 from pywebio.output import *
 
-OpenAiConfigExample = """
-{
-    "key": "YourKey",
-    "base": "",
-    "model": "gpt-4o"
-}
-"""
+with open('config/configExample.json', 'r', encoding = 'utf-8') as jsExample:
+    jsEx = json.load(jsExample)
 
-DeepSeekConfigExample = """
-{
-    "key": "YourKey",
-    "base": "https://api.deepseek.com",
-    "model": "deepseek-reasoner"
-}
-"""
+OpenAiConfigExample = jsEx['OpenAiConfigExample']
+DeepSeekConfigExample = jsEx['DeepSeekConfigExample']
+OllamaConfigExample = jsEx['OllamaConfigExample']
+LmStudioConfigExample = jsEx['LmStudioConfigExample']
 
-OllamaConfigExample = """
-{
-    "key": "ollama",
-    "base": "http://localhost:11434/v1",
-    "model": "model"
-}
+with open('prompt/a/prompt1a.txt', 'r', encoding='utf-8') as file:
+    prompt1a = file.read()
+with open('prompt/b/prompt1b.txt', 'r', encoding='utf-8') as file:
+    prompt1b = file.read()
+with open('prompt/a/prompt2a0.txt', 'r', encoding='utf-8') as file:
+    prompt2a0 = file.read()
+with open('prompt/a/prompt2a1.txt', 'r', encoding='utf-8') as file:
+    prompt2a1 = file.read()
+with open('prompt/a/prompt2a2.txt', 'r', encoding='utf-8') as file:
+    prompt2a2 = file.read()
+with open('prompt/a/prompt2a3.txt', 'r', encoding='utf-8') as file:
+    prompt2a3 = file.read()
+with open('prompt/a/prompt2a4.txt', 'r', encoding='utf-8') as file:
+    prompt2a4 = file.read()
+with open('prompt/a/prompt2a5.txt', 'r', encoding='utf-8') as file:
+    prompt2a5 = file.read()
+with open('prompt/a/prompt2a6.txt', 'r', encoding='utf-8') as file:
+    prompt2a6 = file.read()
+with open('prompt/b/prompt2b0.txt', 'r', encoding='utf-8') as file:
+    prompt2b0 = file.read()
+with open('prompt/b/prompt2b1.txt', 'r', encoding='utf-8') as file:
+    prompt2b1 = file.read()
+with open('prompt/b/prompt2b2.txt', 'r', encoding='utf-8') as file:
+    prompt2b2 = file.read()
+with open('prompt/b/prompt2b3.txt', 'r', encoding='utf-8') as file:
+    prompt2b3 = file.read()
+with open('prompt/b/prompt2b4.txt', 'r', encoding='utf-8') as file:
+    prompt2b4 = file.read()
+with open('prompt/b/prompt2b5.txt', 'r', encoding='utf-8') as file:
+    prompt2b5 = file.read()
+with open('prompt/b/prompt2b6.txt', 'r', encoding='utf-8') as file:
+    prompt2b6 = file.read()
+    
 """
-
-LmStudioConfigExample = """
-{
-    "key": "lmstudio",
-    "base": "http://127.0.0.1:1234/v1",
-    "model": "model"
-}
-"""
-
-prompt1a = """
 根据用户的需求分析需要画出哪种图表，给出你的选择，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -63,7 +72,7 @@ id | 函数 | 生成的图形 | 特点 |
 ### 用户需求：
 """
 
-prompt1b = """
+"""
 根据用户的需求分析需要画出哪种图表，给出你的选择，想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -89,7 +98,7 @@ id | 函数 | 生成的图形 | 特点 |
 ### 用户需求：
 """
 
-prompt2a0 = """
+"""
 根据用户的需求提取出你作图表需要的数据以及数据对应的标签，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -105,7 +114,7 @@ x为自变量，y为因变量，ylabel为数据对象的标签，x的大小为n�
 ### 用户需求:
 """
 
-prompt2a1 = """
+"""
 根据用户的需求提取出你作图表需要的数据以及数据，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -121,7 +130,7 @@ x和y的各自的第n项表示第n个点的x轴坐标和y轴坐标
 ### 用户需求:
 """
 
-prompt2a2 = """
+"""
 根据用户的需求提取出你作图表需要的数据以及数据对应的标签，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -137,7 +146,7 @@ x为自变量，y为因变量，ylabel为数据对象的标签，x的大小为n�
 ### 用户需求:
 """
 
-prompt2a3 = """
+"""
 根据用户的需求提取出你作图表需要的数据以及数据对应的标签，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -153,7 +162,7 @@ x为自变量，y为因变量，ylabel为数据对象的标签，x的大小为n�
 ### 用户需求:
 """
 
-prompt2a4 = """
+"""
 根据用户的需求提取出你作图表需要的数据以及数据对应的标签，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -169,7 +178,7 @@ x为自变量，y1和y2为两个不同的因变量，ylabel为数据对象的标
 ### 用户需求:
 """
 
-prompt2a5 = """
+"""
 根据用户的需求提取出你作图表需要的数据以及数据对应的标签，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -185,7 +194,7 @@ x为自变量，y为因变量，ylabel为数据对象的标签，x的大小为n�
 ### 用户需求:
 """
 
-prompt2a6 = """
+"""
 根据用户的需求提取出你作图表需要的数据以及数据对应的标签，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -201,7 +210,7 @@ position为自变量，value为因变量，label为数据对象的标签，posit
 ### 用户需求:
 """
 
-prompt2b0 = """
+"""
 根据用户的需求提取出你作图表需要的数据以及数据对应的标签，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -218,7 +227,7 @@ x为自变量，y为因变量，ylabel为数据对象的标签，x的大小为n�
 ### 用户需求:
 """
 
-prompt2b1 = """
+"""
 根据用户的需求提取出你作图表需要的数据以及数据，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -235,7 +244,7 @@ x和y的各自的第n项表示第n个点的x轴坐标和y轴坐标，thought为�
 ### 用户需求:
 """
 
-prompt2b2 = """
+"""
 根据用户的需求提取出你作图表需要的数据以及数据对应的标签，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -252,7 +261,7 @@ x为自变量，y为因变量，ylabel为数据对象的标签，x的大小为n�
 ### 用户需求:
 """
 
-prompt2b3 = """
+"""
 根据用户的需求提取出你作图表需要的数据以及数据对应的标签，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -269,7 +278,7 @@ x为自变量，y为因变量，ylabel为数据对象的标签，x的大小为n�
 ### 用户需求:
 """
 
-prompt2b4 = """
+"""
 根据用户的需求提取出你作图表需要的数据以及数据对应的标签，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -286,7 +295,7 @@ x为自变量，y1和y2为两个不同的因变量，ylabel为数据对象的标
 ### 用户需求:
 """
 
-prompt2b5 = """
+"""
 根据用户的需求提取出你作图表需要的数据以及数据对应的标签，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -303,7 +312,7 @@ x为自变量，y为因变量，ylabel为数据对象的标签，x的大小为n�
 ### 用户需求:
 """
 
-prompt2b6 = """
+"""
 根据用户的需求提取出你作图表需要的数据以及数据对应的标签，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -1007,7 +1016,7 @@ def main():
     
     while True:
         # 导入大模型
-        with open('config.json', 'r', encoding = 'utf-8') as jsfile:
+        with open('config/config.json', 'r', encoding = 'utf-8') as jsfile:
             js = json.load(jsfile)
             client = OpenAI(api_key = js['key'], base_url = js['base'])
             llmmodel = js['model']
@@ -1025,7 +1034,7 @@ def main():
 
         if input['act'] == -1:
             while True:
-                with open('config.json', 'r', encoding='utf-8') as file:
+                with open('config/config.json', 'r', encoding='utf-8') as file:
                     text = file.read()
                 
                 config = input_group(
@@ -1046,25 +1055,25 @@ def main():
                         break
 
                     case 1:
-                        with open('config.json', 'w', encoding='utf-8') as file:
+                        with open('config/config.json', 'w', encoding='utf-8') as file:
                             file.write(config['text'])
                         break
 
                     case 2:
-                        with open('config.json', 'w', encoding='utf-8') as file:
-                            file.write(OpenAiConfigExample)
-                    
+                        with open('config/config.json', 'w', encoding='utf-8') as file:
+                            json.dump(OpenAiConfigExample, file, ensure_ascii=False, indent=4)
+
                     case 3:
-                        with open('config.json', 'w', encoding='utf-8') as file:
-                            file.write(DeepSeekConfigExample)
+                        with open('config/config.json', 'w', encoding='utf-8') as file:
+                            json.dump(DeepSeekConfigExample, file, ensure_ascii=False, indent=4)
                     
                     case 4:
-                        with open('config.json', 'w', encoding='utf-8') as file:
-                            file.write(OllamaConfigExample)
+                        with open('config/config.json', 'w', encoding='utf-8') as file:
+                            json.dump(OllamaConfigExample, file, ensure_ascii=False, indent=4)
 
                     case 5:
-                        with open('config.json', 'w', encoding='utf-8') as file:
-                            file.write(LmStudioConfigExample)
+                        with open('config/config.json', 'w', encoding='utf-8') as file:
+                            json.dump(LmStudioConfigExample, file, ensure_ascii=False, indent=4)
 
             continue
 

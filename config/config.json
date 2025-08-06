@@ -1,0 +1,5 @@
+{
+    "key": "ollama",
+    "base": "http://localhost:11434/v1",
+    "model": "model"
+}

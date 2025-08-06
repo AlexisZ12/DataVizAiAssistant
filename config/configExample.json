@@ -1,0 +1,28 @@
+{
+    "OpenAiConfigExample": 
+    {
+        "key": "YourKey",
+        "base": "",
+        "model": "gpt-4o"
+    },
+    "DeepSeekConfigExample":
+    {
+    "key": "YourKey",
+    "base": "https://api.deepseek.com",
+    "model": "deepseek-reasoner"
+    },
+    "OllamaConfigExample":
+    {
+        "key": "ollama",
+        "base": "http://localhost:11434/v1",
+        "model": "model"
+    },
+    "LmStudioConfigExample":
+    {
+        "key": "lmstudio",
+        "base": "http://127.0.0.1:1234/v1",
+        "model": "model"
+    }
+}
+
+
