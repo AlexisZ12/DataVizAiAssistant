@@ -1,7 +1,6 @@
 from openai import OpenAI
 import json
 import MatplotlibInterface
-import matplotlib.pyplot as plt
 import io
 from pywebio.input import *
 from pywebio.output import *
