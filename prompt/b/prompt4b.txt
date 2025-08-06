@@ -1,0 +1,12 @@
+根据用户的需求和之前提取的数据设计图表坐标轴范围和刻度，并给出你的想法和原因，根据提供的格式和要求返回成json格式
+
+### 格式：
+包含6个字段thought，reason，xmin，xmax，xstep，ymin，ymax和ystep，其中thought和reason为string类型，xmin，xmax，xstep，ymin，ymax和ystep为int或float类型
+json数据中不要添加注释
+
+### 要求：
+thought为你的分析思路，reason为你的选择原因，xmin为x轴的最小值，xmax为x轴的最大值，xstep为x轴的刻度间隔，ymin为y轴的最小值，ymax为y轴的最大值，ystep为y轴的刻度间隔
+根据用户的要求来设置坐标轴范围和刻度，如果用户没有提出范围，则选择一个你认为合适的范围，使图表整洁美观
+先给出thought和reason，再给出别的数据
+
+### 用户需求:

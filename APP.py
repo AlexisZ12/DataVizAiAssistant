@@ -46,6 +46,36 @@ with open('prompt/b/prompt2b5.txt', 'r', encoding='utf-8') as file:
     prompt2b5 = file.read()
 with open('prompt/b/prompt2b6.txt', 'r', encoding='utf-8') as file:
     prompt2b6 = file.read()
+with open('prompt/a/prompt3a0.txt', 'r', encoding='utf-8') as file:
+    prompt3a0 = file.read()
+with open('prompt/a/prompt3a1.txt', 'r', encoding='utf-8') as file:
+    prompt3a1 = file.read()
+with open('prompt/a/prompt3a2.txt', 'r', encoding='utf-8') as file:
+    prompt3a2 = file.read()
+with open('prompt/a/prompt3a3.txt', 'r', encoding='utf-8') as file:
+    prompt3a3 = file.read()
+with open('prompt/a/prompt3a4.txt', 'r', encoding='utf-8') as file:
+    prompt3a4 = file.read()
+with open('prompt/a/prompt3a5.txt', 'r', encoding='utf-8') as file:
+    prompt3a5 = file.read()
+with open('prompt/a/prompt3a6.txt', 'r', encoding='utf-8') as file:
+    prompt3a6 = file.read()
+with open('prompt/a/prompt3b1.txt', 'r', encoding='utf-8') as file:
+    prompt3b1 = file.read()
+with open('prompt/a/prompt3b2.txt', 'r', encoding='utf-8') as file:
+    prompt3b2 = file.read()
+with open('prompt/a/prompt3b3.txt', 'r', encoding='utf-8') as file:
+    prompt3b3 = file.read()
+with open('prompt/a/prompt3b4.txt', 'r', encoding='utf-8') as file:
+    prompt3b4 = file.read()
+with open('prompt/a/prompt3b5.txt', 'r', encoding='utf-8') as file:
+    prompt3b5 = file.read()
+with open('prompt/a/prompt3b6.txt', 'r', encoding='utf-8') as file:
+    prompt3b6 = file.read()
+with open('prompt/a/prompt4a.txt', 'r', encoding='utf-8') as file:
+    prompt4a = file.read()
+with open('prompt/b/prompt4b.txt', 'r', encoding='utf-8') as file:
+    prompt4b = file.read()
     
 """
 根据用户的需求分析需要画出哪种图表，给出你的选择，根据提供的格式和要求返回成json格式
@@ -329,7 +359,7 @@ position为自变量，value为因变量，label为数据对象的标签，posit
 ### 用户需求:
 """
 
-prompt3a0 = """
+"""
 根据用户的需求设计图表样式，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -406,7 +436,7 @@ id | color |
 ### 用户需求:
 """
 
-prompt3a1 = """
+"""
 根据用户的需求设计图表样式，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -432,7 +462,7 @@ id | color |
 ### 用户需求:
 """
 
-prompt3a2 = """
+"""
 根据用户的需求设计图表样式，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -473,7 +503,7 @@ id | color |
 ### 用户需求:
 """
 
-prompt3a3 = """
+"""
 根据用户的需求设计图表样式，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -538,7 +568,7 @@ id | color |
 ### 用户需求:
 """
 
-prompt3a4 = """
+"""
 根据用户的需求设计图表样式，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -563,7 +593,7 @@ id | color |
 ### 用户需求:
 """
 
-prompt3a5= """
+"""
 根据用户的需求设计图表样式，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -589,7 +619,7 @@ id | color |
 ### 用户需求:
 """
 
-prompt3a6 = """
+"""
 根据用户的需求设计图表样式，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -615,7 +645,7 @@ id | color |
 ### 用户需求:
 """
 
-prompt3b0 = """
+"""
 根据用户的需求设计图表样式，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -693,7 +723,7 @@ id | color |
 ### 用户需求:
 """
 
-prompt3b1 = """
+"""
 根据用户的需求设计图表样式，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -720,7 +750,7 @@ id | color |
 ### 用户需求:
 """
 
-prompt3b2 = """
+"""
 根据用户的需求设计图表样式，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -762,7 +792,7 @@ id | color |
 ### 用户需求:
 """
 
-prompt3b3 = """
+"""
 根据用户的需求设计图表样式，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -828,7 +858,7 @@ id | color |
 ### 用户需求:
 """
 
-prompt3b4 = """
+"""
 根据用户的需求设计图表样式，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -854,7 +884,7 @@ id | color |
 ### 用户需求:
 """
 
-prompt3b5 = """
+"""
 根据用户的需求设计图表样式，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -881,7 +911,7 @@ id | color |
 ### 用户需求:
 """
 
-prompt3b6 = """
+"""
 根据用户的需求设计图表样式，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -908,7 +938,7 @@ id | color |
 ### 用户需求:
 """
 
-prompt4a = """
+"""
 根据用户的需求和之前提取的数据设计图表坐标轴范围和刻度，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -922,7 +952,7 @@ xmin为x轴的最小值，xmax为x轴的最大值，xstep为x轴的刻度间隔�
 ### 用户需求:
 """
 
-prompt4b = """
+"""
 根据用户的需求和之前提取的数据设计图表坐标轴范围和刻度，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：

@@ -1,0 +1,39 @@
+根据用户的需求设计图表样式，并给出你的想法和原因，根据提供的格式和要求返回成json格式
+
+### 格式：
+包含4个字段thought，reason，bcolor和hatch，其中thought和reason为string类型，bcolor和hatch为一维int数组
+json数据中不要添加注释
+
+### 要求：
+bcolor和hatch的大小都为m，m为数据对象的个数
+thought为你的分析思路，reason为你的选择原因，bcolor为填充颜色，hatch为填充样式
+参考下面这个对应表来设计，返回对应的形状和颜色的id，如果用户没有提出形状和颜色，则选择一个你认为合适的形状和颜色，使图表整洁美观，如无特殊说明，不同数据对象的hatch相同
+先给出thought和reason，再给出别的数据
+
+### hatch：
+id | hatch | name |
+---|---|---|
+0 | / | Diagonal Line (Forward) |
+1 | \ | Diagonal Line (Backward) |
+2 | | | Vertical Line |
+3 | - | Horizontal Line |
+4 | + | Cross (Vertical + Horizontal) |
+5 | x | Crossed Diagonal Lines |
+6 | o | Small Circles |
+7 | O | Large Circles |
+8 | . | Dots |
+9 | * | Stars |
+10 | | nothing |
+
+#### color：
+id | color |
+0 | blue |
+1 | green |
+2 | red |
+3 | cyan |
+4 | magenta |
+5 | yellow |
+6 | black |
+7 | white |
+
+### 用户需求:

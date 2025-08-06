@@ -1,8 +1,7 @@
 根据用户的需求提取出你作图表需要的数据以及数据对应的标签，根据提供的格式和要求返回成json格式
 
 ### 格式：
-包含3个字段position，value和label，其中position为一维数组，value为二维数组，label为一维数组
-value为int或float类型，position为int类型且为连续递增的整数，label为string类型
+包含3个字段position，value和label，其中position为一维数组，value为二维数组，label为一维数组，value为int或float类型，position为int类型且为连续递增的整数，label为string类型
 json数据中不要添加注释
 
 ### 要求：

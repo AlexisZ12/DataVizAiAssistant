@@ -1,0 +1,62 @@
+根据用户的需求设计图表样式，根据提供的格式和要求返回成json格式
+
+### 格式：
+包含6个字段marker，linelinestyle，baselinestyle，mcolor，lcolor和bcolor，这6个字段均为一维int数组
+json数据中不要添加注释
+
+### 要求：
+marker，linelinestyle，baselinestyle，mcolor，lcolor和bcolor的大小都为m，m为数据对象的个数
+marker为数据点的形状，linelinestyle为主线的形状，baselinestyle为基准线线的形状，mcolor为数据点的颜色，lcolor为主线的颜色，bcolor为基准线的颜色
+参考下面这个对应表来设计，返回对应的形状和颜色的id，如果用户没有提出形状和颜色，则选择一个你认为合适的形状和颜色，使图表整洁美观，如无特殊说明同一数据对象的mcolor和lcolor相同，不同数据对象的marker和linelinestyle相同
+
+#### marker：
+id | marker | name |
+---|---|---|
+0 | . | point |
+1 | , | pixel |
+2 | o | circle |
+3 | v | triangle_down |
+4 | ^ | triangle_up |
+5 | < | triangle_left |
+6 | > | triangle_right |
+7 | 1 | tri_down |
+8 | 2 | tri_up |
+9 | 3 | tri_left |
+10 | 4 | tri_right |
+11 | 8 | octagon |
+12 | s | square |
+13 | p | pentagon |
+14 | * | star |
+15 | h | hexagon1 |
+16 | H | hexagon2 |
+17 | + | plus |
+18 | x | x |
+19 | D | diamond |
+20 | d | thin_diamond |
+21 | | | |
+22 | _ | |
+23 | P | plus_filled |
+24 | X | x_filled |
+37 | | nothing |
+
+#### linestyle：
+id | linestyle | name |
+---|---|---|
+0 | - | solid |
+1 | : | dotted |
+2 | -- | dashed |
+3 | -. | dashdot |
+4 | None | |
+
+#### color：
+id | color |
+0 | blue |
+1 | green |
+2 | red |
+3 | cyan |
+4 | magenta |
+5 | yellow |
+6 | black |
+7 | white |
+
+### 用户需求:

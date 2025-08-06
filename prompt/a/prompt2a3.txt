@@ -1,8 +1,7 @@
 根据用户的需求提取出你作图表需要的数据以及数据对应的标签，根据提供的格式和要求返回成json格式
 
 ### 格式：
-包含3个字段x，y和ylabel，其中x为一维数组，y为二维数组，ylabel为一维数组
-x和y均为int或float类型，ylabel为string类型
+包含3个字段x，y和ylabel，其中x为一维数组，y为二维数组，ylabel为一维数组，x和y均为int或float类型，ylabel为string类型
 json数据中不要添加注释
 
 ### 要求：

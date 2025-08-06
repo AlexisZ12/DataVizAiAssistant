@@ -1,0 +1,24 @@
+根据用户的需求设计图表样式，并给出你的想法和原因，根据提供的格式和要求返回成json格式
+
+### 格式：
+包含3个字段thought，reason和color，其中thought和reason为string类型，color为一维int数组
+json数据中不要添加注释
+
+### 要求：
+color的大小为m，m为数据对象的个数
+thought为你的分析思路，reason为你的选择原因，color为阶梯线的颜色
+参考下面这个对应表来设计，返回对应颜色的id，如果用户没有提出颜色，则选择一个你认为合适的颜色，使图表整洁美观
+先给出thought和reason，再给出别的数据
+
+#### color：
+id | color |
+0 | blue |
+1 | green |
+2 | red |
+3 | cyan |
+4 | magenta |
+5 | yellow |
+6 | black |
+7 | white |
+
+### 用户需求:
