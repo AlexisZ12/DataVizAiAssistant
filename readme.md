@@ -62,15 +62,15 @@ pip install pywebio
 
 ## 🖼️ 支持的可视化类型
 
-| 图表类型 | ID | 适用场景 |
-|----------|----|----------|
-| 线图 | 0 | 时间序列、趋势分析 |
-| 散点图 | 1 | 相关性分析、分布模式 |
-| 条形图 | 2 | 分类数据比较 |
-| 茎叶图 | 3 | 点值分布 |
-| 填充图 | 4 | 范围可视化 |
-| 堆叠图 | 5 | 比例构成分析 |
-| 阶梯图 | 6 | 离散数值变化 |
+| 图表类型 | 适用场景 | 示例 |
+|----------|----------|------|
+| 线图 | 时间序列、趋势分析 | <img src="pic/plot.png" height="150"> |
+| 散点图 | 相关性分析、分布模式 | <img src="pic/scatter.png" height="150"> |
+| 条形图 | 分类数据比较 | <img src="pic/bar.png" height="150"> |
+| 茎叶图 | 点值分布 | <img src="pic/stem.png" height="150"> |
+| 填充图 | 范围可视化 | <img src="pic/fill_between.png" height="150"> |
+| 堆叠图 | 比例构成分析 | <img src="pic/stackplot.png" height="150"> |
+| 阶梯图 | 离散数值变化 | <img src="pic/stairs.png" height="150"> |
 
 ## 🧭 使用示例
 
