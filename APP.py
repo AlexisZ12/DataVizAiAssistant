@@ -78,6 +78,18 @@ with open('prompt/a/prompt4a.txt', 'r', encoding='utf-8') as file:
     prompt4a = file.read()
 with open('prompt/b/prompt4b.txt', 'r', encoding='utf-8') as file:
     prompt4b = file.read()
+with open('prompt/a/prompt5a.txt', 'r', encoding='utf-8') as file:
+    prompt5a = file.read()
+with open('prompt/b/prompt5b.txt', 'r', encoding='utf-8') as file:
+    prompt5b = file.read()
+with open('prompt/a/prompt_newa1.txt', 'r', encoding='utf-8') as file:
+    prompt_newa1 = file.read()
+with open('prompt/a/prompt_newa2.txt', 'r', encoding='utf-8') as file:
+    prompt_newa2 = file.read()
+with open('prompt/b/prompt_newa1.txt', 'r', encoding='utf-8') as file:
+    prompt_newb1 = file.read()
+with open('prompt/a/prompt_newb2.txt', 'r', encoding='utf-8') as file:
+    prompt_newb2 = file.read()
     
 """
 根据用户的需求分析需要画出哪种图表，给出你的选择，根据提供的格式和要求返回成json格式
@@ -969,7 +981,7 @@ xmin为x轴的最小值，xmax为x轴的最大值，xstep为x轴的刻度间隔�
 ### 用户需求:
 """
 
-prompt5a = """
+"""
 根据用户的需求和之前提取的数据设计图表的标题和坐标轴的标签，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -983,7 +995,7 @@ title为图表的标题，xlabel为x轴的标签，ylabel为y轴的标签
 ### 用户需求:
 """
 
-prompt5b = """
+"""
 根据用户的需求和之前提取的数据设计图表的标题和坐标轴的标签，并给出你的想法和原因，根据提供的格式和要求返回成json格式
 
 ### 格式：
@@ -998,7 +1010,7 @@ title为图表的标题，xlabel为x轴的标签，ylabel为y轴的标签，thou
 ### 用户需求:
 """
 
-prompt_newa1 = """
+"""
 根据用户的要求，参考之前提供的设计格式，继续修改图表，根据当前设计参数，生成新的设计参数，返回成json格式，json的字段数量与字段名与当前设计参数相同，注意修改的参数前后维数要一致
 json数据中不要添加注释
 
@@ -1009,7 +1021,7 @@ json数据中不要添加注释
 {}
 """
 
-prompt_newa2 = """
+"""
 根据用户的要求，继续修改之前的数据，返回成json格式，json的字段数量与字段名与之前的数据相同，注意修改的参数前后维数要一致
 json数据中不要添加注释
 
@@ -1020,7 +1032,7 @@ json数据中不要添加注释
 {}
 """
 
-prompt_newb1 = """
+"""
 根据用户的要求，参考之前提供的设计格式，继续修改图表，根据当前设计参数，生成新的设计参数，返回成json格式，json的字段数量与字段名与当前设计参数相同，注意修改的参数前后维数要一致
 再额外加上thought和reason两个字段，thought为你的分析思路，reason为你的选择原因
 json数据中不要添加注释，先给出thought和reason，再给出别的数据
@@ -1032,7 +1044,7 @@ json数据中不要添加注释，先给出thought和reason，再给出别的数
 {}
 """
 
-prompt_newb2 = """
+"""
 根据用户的要求，继续修改之前的数据，并给出你的想法和原因，返回成json格式，json的字段数量与字段名与之前的数据相同，注意修改的参数前后维数要一致
 再额外加上thought和reason两个字段，thought为你的分析思路，reason为你的选择原因
 json数据中不要添加注释，先给出thought和reason，再给出别的数据
