@@ -8,14 +8,13 @@ HATCHSTYLE = ['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*', ' ']
 # COLOR = ['black', 'silver', 'gray', 'white', 'maroon', 'red', 'purple', 'fuchsia', 'green', 'lime', 'olive', 'yellow', 'navy', 'blue', 'teal', 'aqua']
 COLOR = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w', 'orange', 'pink']
 
-matplotlib.rcParams['font.family'] = 'SimHei'
+plt.rcParams['font.sans-serif']=['SimHei','Songti SC','STFangsong']
 matplotlib.rcParams['axes.unicode_minus'] = False
 
 def PlotInterface(X_value, Y_value, Y_value_label,
                   M_style, L_style, M_color, L_color,
                   X_min, X_max, X_step, Y_min, Y_max, Y_step,
                   X_label, Y_label, Title):
-    
     n = len(Y_value)
     
     for i in range(n):
@@ -42,7 +41,6 @@ def ScatterInterface(X_value, Y_value,
                      color, size, alpha,
                      X_min, X_max, X_step, Y_min, Y_max, Y_step,
                      X_label, Y_label, Title):
-    
     plt.scatter(X_value, Y_value, c=[COLOR[i] for i in color], s=size, alpha=alpha)
 
     plt.xticks(ticks=np.arange(X_min, X_max + 1, X_step))
@@ -58,7 +56,6 @@ def BarInterface(X_value, Y_value, Y_value_label,
                  B_color, H_style,
                  X_min, X_max, X_step, Y_min, Y_max, Y_step,
                  X_label, Y_label, Title):
-    
     n = len(Y_value)
     X_value = np.array(X_value)
     bar_width = 0.8 / n
@@ -86,7 +83,6 @@ def StemInterface(X_value, Y_value, Y_value_label,
                   M_style, L_style, B_style, M_color, L_color, B_color,
                   X_min, X_max, X_step, Y_min, Y_max, Y_step,
                   X_label, Y_label, Title):
-    
     n = len(Y_value)
     X_value = np.array(X_value)
     stem_width = 0.5 / n
@@ -115,7 +111,6 @@ def FillBetweenInterface(X_value, Y_value_1, Y_value_2, Y_value_label,
                          Fill_color, Fill_alpha,
                          X_min, X_max, X_step, Y_min, Y_max, Y_step,
                          Title, X_label, Y_label,):
-    
     plt.fill_between(
         X_value, Y_value_1, Y_value_2,
         color = COLOR[Fill_color],
@@ -137,7 +132,6 @@ def StackplotInterface(X_value, Y_value, Y_value_label,
                        Fill_color, Fill_alpha,
                        X_min, X_max, X_step, Y_min, Y_max, Y_step,
                        Title, X_label, Y_label,):
-
     n = len(Y_value)
 
     for i in range(n):
@@ -162,7 +156,6 @@ def StairsInterface(value, position, value_label,
                     color,
                     X_min, X_max, X_step, Y_min, Y_max, Y_step,
                     Title, X_label, Y_label,):
-    
     n = len(value)
 
     for i in range(n):

@@ -30,8 +30,7 @@
 - **后端**
   - Python 3.10+
   - OpenAI Python SDK
-  - Matplotlib (可视化引擎)
-  - JSON (配置文件管理)
+  - Matplotlib
 
 - **交互界面**
   - PyWebIO (用于创建Web交互应用)
@@ -74,6 +73,31 @@ pip install pywebio
 
 ## 🧭 使用示例
 
+### 示例1
+
+分析内容：
+
+> 2025年，全球太阳能发电行业经历了快速增长。根据国际可再生能源署（IRENA）的报告，全球五大太阳能发电国的装机容量在过去一年内都有显著增长。以下是这些国家的新增装机容量和占全球市场的比例。  
+> 关键数据：  
+> 中国：新增装机容量 50 GW，占全球市场的 25%  
+> 美国：新增装机容量 30 GW，占全球市场的 15%  
+> 印度：新增装机容量 20 GW，占全球市场的 10%  
+> 德国：新增装机容量 12 GW，占全球市场的 6%  
+> 日本：新增装机容量 8 GW，占全球市场的 4%  
+> 根据这些数据，我们可以生成柱状图来展示各国新增装机容量的对比。 
+
+结果： 
+
+<img src="pic/example1.png" height="300">
+
+### 示例2
+
+> From the 1st to the 7th of this month, the stock of TechGen Inc. (TGI) showed some fluctuations. On the 1st, the stock opened at $152.45 and closed at $158.72. The next day, it saw a slight dip, opening at $157.20 and finishing at $155.35. On the 3rd, it bounced back, opening at $156.10 and closing at $160.55. The 4th saw a more significant drop, starting at $159.00 and ending at $152.85. Afterward, the stock demonstrated a steady recovery with an opening price of $153.50 on the 5th, closing at $157.90. On the 6th, it slightly rose again, opening at $158.00 and closing at $161.25. Finally, on the 7th, TechGen Inc. saw its highest price of the week, opening at $162.00 and closing at $163.80, ending the week on a positive note.
+
+结果： 
+
+<img src="pic/example2.png" height="300">
+
 ## 🛑 注意事项
 
 1. 需要有效的LLM API密钥（OpenAI或兼容服务）
@@ -83,3 +107,5 @@ pip install pywebio
 
 ## 📬 联系我们
 
+- ⭐ 欢迎Star: 如果喜欢这个项目，请在GitHub上点个Star支持我们
+- 📬 联系邮箱: 2242809239@qq.com 
