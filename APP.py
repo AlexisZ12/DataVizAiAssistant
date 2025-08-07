@@ -179,31 +179,38 @@ def main():
                 match type["id"]:
                     # 线型图
                     case 0:
-                        fig, style, range, label = plot.plot_nothink(text_in, client, llmmodel, prompt2a0, prompt3a0, prompt4a, prompt5a)
+                        fig, style, range, label = plot.plot(text_in, client, llmmodel, prompt2a0, prompt3a0, prompt4a, prompt5a)
+                        prompt3 = prompt3a0
                         
                     # 散点图
                     case 1:
-                        fig, style, range, label = scatter.scatter_nothink(text_in, client, llmmodel, prompt2a1, prompt3a1, prompt4a, prompt5a)
+                        fig, style, range, label = scatter.scatter(text_in, client, llmmodel, prompt2a1, prompt3a1, prompt4a, prompt5a)
+                        prompt3 = prompt3a1
                         
                     # 条形图
                     case 2:
-                        fig, style, range, label = bar.bar_nothink(text_in, client, llmmodel, prompt2a2, prompt3a2, prompt4a, prompt5a)
+                        fig, style, range, label = bar.bar(text_in, client, llmmodel, prompt2a2, prompt3a2, prompt4a, prompt5a)
+                        prompt3 = prompt3a2
                         
                     # 茎叶图
                     case 3:
-                        fig, style, range, label = stem.stem_nothink(text_in, client, llmmodel, prompt2a3, prompt3a3, prompt4a, prompt5a)
+                        fig, style, range, label = stem.stem(text_in, client, llmmodel, prompt2a3, prompt3a3, prompt4a, prompt5a)
+                        prompt3 = prompt3a3
                         
                     # 填充区域图
                     case 4:
-                        fig, style, range, label = fillbetween.fillbetween_nothink(text_in, client, llmmodel, prompt2a4, prompt3a4, prompt4a, prompt5a)
+                        fig, style, range, label = fillbetween.fillbetween(text_in, client, llmmodel, prompt2a4, prompt3a4, prompt4a, prompt5a)
+                        prompt3 = prompt3a4
                     
                     # 堆叠区域图
                     case 5:
-                        fig, style, range, label = stackplot.stackplot_nothink(text_in, client, llmmodel, prompt2a5, prompt3a5, prompt4a, prompt5a)
+                        fig, style, range, label = stackplot.stackplot(text_in, client, llmmodel, prompt2a5, prompt3a5, prompt4a, prompt5a)
+                        prompt3 = prompt3a5
                     
                     # 阶梯图
                     case 6:
-                        fig, style, range, label = stairs.stairs_nothink(text_in, client, llmmodel, prompt2a6, prompt3a6, prompt4a, prompt5a)
+                        fig, style, range, label = stairs.stairs(text_in, client, llmmodel, prompt2a6, prompt3a6, prompt4a, prompt5a)
+                        prompt3 = prompt3a6
                 
                 # 组装数据
                 config_now = style | range | label
@@ -326,277 +333,39 @@ def main():
                 match type["id"]:
                     # 线型图
                     case 0:
-                        # 第2阶段：提取数据与数据标签
-                        prompt2 = prompt2b0
-                        messages2 = [{"role": "user", "content": prompt2 + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages2).choices[0].message.content
-                        print(openai_out)
-                        data = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-                        messages2.append({"role": "assistant", "content": openai_out})
-
-                        # 第3阶段：设计图表样式
+                        fig, style, range, label = plot.plot(text_in, client, llmmodel, prompt2b0, prompt3b0, prompt4b, prompt5b)
                         prompt3 = prompt3b0
-                        messages3 = messages2 + [{"role": "user", "content": prompt3 + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages3).choices[0].message.content
-                        print(openai_out)
-                        style = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-                        # 第4阶段：设计图表刻度与范围
-                        messages4 = messages2 + [{"role": "user", "content": prompt4b + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages4).choices[0].message.content
-                        print(openai_out)
-                        range = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-                        # 第5阶段：设计图表标签
-                        messages5 = messages2 + [{"role": "user", "content": prompt5b + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages5).choices[0].message.content
-                        print(openai_out)
-                        label = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-                        # 作图
-                        fig = MatplotlibInterface.PlotInterface(data["x"], data["y"], data["ylabel"],
-                                                                style["marker"], style["linestyle"], style["mcolor"], style["lcolor"],
-                                                                range["xmin"], range["xmax"], range["xstep"], range["ymin"], range["ymax"], range["ystep"],
-                                                                label["xlabel"], label["ylabel"], label["title"])
-                    
+                        
                     # 散点图
                     case 1:
-                        # 第2阶段：提取数据与数据标签
-                        prompt2 = prompt2b1
-                        messages2 = [{"role": "user", "content": prompt2 + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages2).choices[0].message.content
-                        print(openai_out)
-                        data = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-                        messages2.append({"role": "assistant", "content": openai_out})
-
-                        # 第3阶段：设计图表样式
+                        fig, style, range, label = scatter.scatter(text_in, client, llmmodel, prompt2b1, prompt3b1, prompt4b, prompt5b)
                         prompt3 = prompt3b1
-                        messages3 = messages2 + [{"role": "user", "content": prompt3 + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages3).choices[0].message.content
-                        print(openai_out)
-                        style = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-                        # 第4阶段：设计图表刻度与范围
-                        messages4 = messages2 + [{"role": "user", "content": prompt4b + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages4).choices[0].message.content
-                        print(openai_out)
-                        range = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-                        # 第5阶段：设计图表标签
-                        messages5 = messages2 + [{"role": "user", "content": prompt5b + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages5).choices[0].message.content
-                        print(openai_out)
-                        label = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-                        # 作图
-                        fig = MatplotlibInterface.ScatterInterface(data["x"], data["y"],
-                                                                   style["mcolor"], style["msize"], style["malpha"],
-                                                                   range["xmin"], range["xmax"], range["xstep"], range["ymin"], range["ymax"], range["ystep"],
-                                                                   label["xlabel"], label["ylabel"], label["title"])
-
+                        
                     # 条形图
                     case 2:
-                        # 第2阶段：提取数据与数据标签
-                        prompt2 = prompt2b2
-                        messages2 = [{"role": "user", "content": prompt2 + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages2).choices[0].message.content
-                        print(openai_out)
-                        data = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-                        messages2.append({"role": "assistant", "content": openai_out})
-
-                        # 第3阶段：设计图表样式
+                        fig, style, range, label = bar.bar(text_in, client, llmmodel, prompt2b2, prompt3b2, prompt4b, prompt5b)
                         prompt3 = prompt3b2
-                        messages3 = messages2 + [{"role": "user", "content": prompt3 + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages3).choices[0].message.content
-                        print(openai_out)
-                        style = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-                        # 第4阶段：设计图表刻度与范围
-                        messages4 = messages2 + [{"role": "user", "content": prompt4b + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages4).choices[0].message.content
-                        print(openai_out)
-                        range = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
                         
-                        # 第5阶段：设计图表标签
-                        messages5 = messages2 + [{"role": "user", "content": prompt5b + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages5).choices[0].message.content
-                        print(openai_out)
-                        label = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-                        # 作图
-                        fig = MatplotlibInterface.BarInterface(data["x"], data["y"], data["ylabel"],
-                                                               style["bcolor"], style["hatch"],
-                                                               range["xmin"], range["xmax"], range["xstep"], range["ymin"], range["ymax"], range["ystep"],
-                                                               label["xlabel"], label["ylabel"], label["title"])
-
                     # 茎叶图
                     case 3:
-                        # 第2阶段：提取数据与数据标签
-                        prompt2 = prompt2b3
-                        messages2 = [{"role": "user", "content": prompt2 + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages2).choices[0].message.content
-                        print(openai_out)
-                        data = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-                        messages2.append({"role": "assistant", "content": openai_out})
-
-                        # 第3阶段：设计图表样式
+                        fig, style, range, label = stem.stem(text_in, client, llmmodel, prompt2b3, prompt3b3, prompt4a, prompt5b)
                         prompt3 = prompt3b3
-                        messages3 = messages2 + [{"role": "user", "content": prompt3 + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages3).choices[0].message.content
-                        print(openai_out)
-                        style = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-                        # 第4阶段：设计图表刻度与范围
-                        messages4 = messages2 + [{"role": "user", "content": prompt4b + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages4).choices[0].message.content
-                        print(openai_out)
-                        range = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
                         
-                        # 第5阶段：设计图表标签
-                        messages5 = messages2 + [{"role": "user", "content": prompt5b + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages5).choices[0].message.content
-                        print(openai_out)
-                        label = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-                        # 作图
-                        fig = MatplotlibInterface.StemInterface(data["x"], data["y"], data["ylabel"],
-                                                                style["marker"], style["linelinestyle"], style["baselinestyle"], style["mcolor"], style["lcolor"], style["bcolor"],
-                                                                range["xmin"], range["xmax"], range["xstep"], range["ymin"], range["ymax"], range["ystep"],
-                                                                label["xlabel"], label["ylabel"], label["title"])
-
                     # 填充区域图
                     case 4:
-                        # 第2阶段：提取数据与数据标签
-                        prompt2 = prompt2b4
-                        messages2 = [{"role": "user", "content": prompt2 + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages2).choices[0].message.content
-                        print(openai_out)
-                        data = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-                        messages2.append({"role": "assistant", "content": openai_out})
-
-                        # 第3阶段：设计图表样式
+                        fig, style, range, label = fillbetween.fillbetween(text_in, client, llmmodel, prompt2b4, prompt3b4, prompt4b, prompt5b)
                         prompt3 = prompt3b4
-                        messages3 = messages2 + [{"role": "user", "content": prompt3 + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages3).choices[0].message.content
-                        print(openai_out)
-                        style = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-                        
-                        # 第4阶段：设计图表刻度与范围
-                        messages4 = messages2 + [{"role": "user", "content": prompt4b + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages4).choices[0].message.content
-                        print(openai_out)
-                        range = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-                        
-                        # 第5阶段：设计图表标签
-                        messages5 = messages2 + [{"role": "user", "content": prompt5b + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages5).choices[0].message.content
-                        print(openai_out)
-                        label = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-                        # 作图
-                        fig = MatplotlibInterface.FillBetweenInterface(data["x"], data["y1"], data["y2"], data["ylabel"],
-                                                                       style["fcolor"], style["falpha"],
-                                                                       range["xmin"], range["xmax"], range["xstep"], range["ymin"], range["ymax"], range["ystep"],
-                                                                       label["title"], label["xlabel"], label["ylabel"])
-
+                    
                     # 堆叠区域图
                     case 5:
-                        # 第2阶段：提取数据与数据标签
-                        prompt2 = prompt2b5
-                        messages2 = [{"role": "user", "content": prompt2 + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages2).choices[0].message.content
-                        print(openai_out)
-                        data = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-                        messages2.append({"role": "assistant", "content": openai_out})
-
-                        # 第3阶段：设计图表样式
+                        fig, style, range, label = stackplot.stackplot(text_in, client, llmmodel, prompt2b5, prompt3b5, prompt4b, prompt5b)
                         prompt3 = prompt3b5
-                        messages3 = messages2 + [{"role": "user", "content": prompt3 + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages3).choices[0].message.content
-                        print(openai_out)
-                        style = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-                        
-                        # 第4阶段：设计图表刻度与范围
-                        messages4 = messages2 + [{"role": "user", "content": prompt4b + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages4).choices[0].message.content
-                        print(openai_out)
-                        range = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-                        
-                        # 第5阶段：设计图表标签
-                        messages5 = messages2 + [{"role": "user", "content": prompt5b + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages5).choices[0].message.content
-                        print(openai_out)
-                        label = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-                        # 作图
-                        fig = MatplotlibInterface.StackplotInterface(data["x"], data["y"], data["ylabel"],
-                                                                     style["fcolor"], style["falpha"],
-                                                                     range["xmin"], range["xmax"], range["xstep"], range["ymin"], range["ymax"], range["ystep"],
-                                                                     label["title"], label["xlabel"], label["ylabel"])
-
+                    
                     # 阶梯图
                     case 6:
-                        # 第2阶段：提取数据与数据标签
-                        prompt2 = prompt2b6
-                        messages2 = [{"role": "user", "content": prompt2 + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages2).choices[0].message.content
-                        print(openai_out)
-                        data = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-                        messages2.append({"role": "assistant", "content": openai_out})
-
-                        # 第3阶段：设计图表样式
+                        fig, style, range, label = stairs.stairs(text_in, client, llmmodel, prompt2b6, prompt3b6, prompt4b, prompt5b)
                         prompt3 = prompt3b6
-                        messages3 = messages2 + [{"role": "user", "content": prompt3 + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages3).choices[0].message.content
-                        print(openai_out)
-                        style = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-                        
-                        # 第4阶段：设计图表刻度与范围
-                        messages4 = messages2 + [{"role": "user", "content": prompt4b + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages4).choices[0].message.content
-                        print(openai_out)
-                        range = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-                        
-                        # 第5阶段：设计图表标签
-                        messages5 = messages2 + [{"role": "user", "content": prompt5b + text_in}]
-
-                        openai_out = client.chat.completions.create(model = llmmodel, messages = messages5).choices[0].message.content
-                        print(openai_out)
-                        label = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-                        # 作图
-                        fig = MatplotlibInterface.StairsInterface(data["value"], data["position"], data["label"],
-                                                                  style["color"],
-                                                                  range["xmin"], range["xmax"], range["xstep"], range["ymin"], range["ymax"], range["ystep"],
-                                                                  label["title"], label["xlabel"], label["ylabel"])
-                        
+                       
                 # 组装数据
                 config_now = style | range | label
                 message_new = [{"role": "user", "content": prompt3.split("### 用户需求:")[0]},

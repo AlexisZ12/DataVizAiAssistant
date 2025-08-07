@@ -1,9 +1,8 @@
 import MatplotlibInterface
 import json
 
-def stem_nothink(text_in, client, llmmodel, prompt2a3, prompt3a3, prompt4a, prompt5a):
+def stem_nothink(text_in, client, llmmodel, prompt2, prompt3, prompt4, prompt5):
     # 第2阶段：提取数据与数据标签
-    prompt2 = prompt2a3
     messages2 = [{"role": "user", "content": prompt2 + text_in}]
 
     openai_out = client.chat.completions.create(model = llmmodel, messages = messages2).choices[0].message.content
@@ -12,7 +11,6 @@ def stem_nothink(text_in, client, llmmodel, prompt2a3, prompt3a3, prompt4a, prom
     messages2.append({"role": "assistant", "content": openai_out})
 
     # 第3阶段：设计图表样式
-    prompt3 = prompt3a3
     messages3 = messages2 + [{"role": "user", "content": prompt3 + text_in}]
 
     openai_out = client.chat.completions.create(model = llmmodel, messages = messages3).choices[0].message.content
@@ -20,14 +18,14 @@ def stem_nothink(text_in, client, llmmodel, prompt2a3, prompt3a3, prompt4a, prom
     style = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
 
     # 第4阶段：设计图表刻度与范围
-    messages4 = messages2 + [{"role": "user", "content": prompt4a + text_in}]
+    messages4 = messages2 + [{"role": "user", "content": prompt4 + text_in}]
 
     openai_out = client.chat.completions.create(model = llmmodel, messages = messages4).choices[0].message.content
     print(openai_out)
     range = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
     
     # 第5阶段：设计图表标签
-    messages5 = messages2 + [{"role": "user", "content": prompt5a + text_in}]
+    messages5 = messages2 + [{"role": "user", "content": prompt5 + text_in}]
 
     openai_out = client.chat.completions.create(model = llmmodel, messages = messages5).choices[0].message.content
     print(openai_out)
