@@ -1,7 +1,7 @@
 import MatplotlibInterface
 import json
 
-def scatter_nothink(text_in, client, llmmodel, prompt2, prompt3, prompt4, prompt5):
+def scatter(text_in, client, llmmodel, prompt2, prompt3, prompt4, prompt5):
     # 第2阶段：提取数据与数据标签
     messages2 = [{"role": "user", "content": prompt2 + text_in}]
 
