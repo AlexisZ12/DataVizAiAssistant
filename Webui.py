@@ -1,4 +1,4 @@
-import APP
+import App
 
 if __name__ == '__main__':
-    APP.main()
+    App.main()
