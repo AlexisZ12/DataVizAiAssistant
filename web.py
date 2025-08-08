@@ -29,7 +29,6 @@ def CheckOpenAi(client):
         return False, []
 
 def main():
-    
     url = "https://api.openai.com/v1"
     
     while True:
@@ -65,7 +64,7 @@ def main():
                 textarea("Please describe what you want to analyse:", rows = 15, placeholder="Elements analysed", name="demand", required=True),
                 select("Which model to be used for analysis:", options=modellist, name="model", required=True),
                 radio("Whether or not it forces thinking:", options=["Yes", "No"], value="No", name="flag"),
-                actions(buttons=[{'label': 'Make the figure', 'value': 0}], name="act")
+                actions(buttons=[{'label': 'Make the Figure', 'value': 0}], name="act")
             ]
         )
         

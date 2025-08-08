@@ -49,10 +49,9 @@ pip install matplotlib
 pip install pywebio
 ```
 
-3. **运行应用**
-```bash
+3. **本地运行**
 
-```
+运行app.py程序，程序会自动跳出浏览器，设置会保存在本地
 
 4. **部署云端**
 
