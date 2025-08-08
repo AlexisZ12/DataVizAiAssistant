@@ -3,7 +3,6 @@ from pywebio.input import *
 from pywebio.output import *
 from pywebio import start_server
 import matplotlib
-import re
 import function
 
 def contains_gpt(my_list):
@@ -16,25 +15,25 @@ def CheckOpenAi(client):
     try:
         response = client.models.list()       
         if not response.data or len(response.data) == 0:
-            toast("⚠️ OpenAi服务测试失败", color='warning')
+            toast("⚠️ Service test failed", color='warning')
             return False, []
         model_ids = [model.id for model in response.data]
-        toast(f"✅ OpenAi服务连接成功")
+        toast(f"✅ Service connected successfully")
         return True, model_ids
         
     except AuthenticationError:
-        toast("⛔ OpenAi API密钥无效", color='error')
+        toast("⛔ API key invalid", color='error')
         return False, []
     except APIConnectionError as e:
-        toast("🌐 OpenAi网络连接失败", color='error')
+        toast("🌐 Network connection failed", color='error')
         return False, []
     except APIStatusError as e:
-        toast("🚨 OpenAi服务异常", color='error')
+        toast("🚨 Service exception", color='error')
         return False, []
     except Exception as e:
-        toast("🔥 OpenAi未知错误", color='error')
+        toast("🔥 Unknown error", color='error')
         return False, []
-
+    
 def main():
     matplotlib.use('Agg')
     url = "https://api.openai.com/v1"

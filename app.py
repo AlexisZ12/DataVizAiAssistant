@@ -1,30 +1,35 @@
 from openai import OpenAI, APIConnectionError, AuthenticationError, APIStatusError
 from pywebio.input import *
 from pywebio.output import *
-import re
 import function
+
+def contains_gpt(my_list):
+    for s in my_list:
+        if isinstance(s, str) and "gpt" in s:
+            return True
+    return False
 
 def CheckOpenAi(client):
     try:
         response = client.models.list()       
         if not response.data or len(response.data) == 0:
-            toast("⚠️ OpenAi服务测试失败", color='warning')
+            toast("⚠️ Service test failed", color='warning')
             return False, []
         model_ids = [model.id for model in response.data]
-        toast(f"✅ OpenAi服务连接成功")
+        toast(f"✅ Service connected successfully")
         return True, model_ids
         
     except AuthenticationError:
-        toast("⛔ OpenAi API密钥无效", color='error')
+        toast("⛔ API key invalid", color='error')
         return False, []
     except APIConnectionError as e:
-        toast("🌐 OpenAi网络连接失败", color='error')
+        toast("🌐 Network connection failed", color='error')
         return False, []
     except APIStatusError as e:
-        toast("🚨 OpenAi服务异常", color='error')
+        toast("🚨 Service exception", color='error')
         return False, []
     except Exception as e:
-        toast("🔥 OpenAi未知错误", color='error')
+        toast("🔥 Unknown error", color='error')
         return False, []
 
 def main():
@@ -58,8 +63,8 @@ def main():
                     break
                 continue
     
-    # print(modellist)
-    # modellist = [model for model in modellist if model.startswith('gpt-') and not re.search(r'-\d+$', model)]
+    if contains_gpt(modellist):
+        modellist = list(set(modellist) & set(["gpt-4", "gpt-4-turbo", "gpt-4o", "gpt-4o-mini", "o1-preview", "o1-mini"]))
     
     while True:
         inputs = input_group(
