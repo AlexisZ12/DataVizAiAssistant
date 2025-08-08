@@ -2,6 +2,7 @@ from openai import OpenAI, APIConnectionError, AuthenticationError, APIStatusErr
 from pywebio.input import *
 from pywebio.output import *
 from pywebio import start_server
+import matplotlib
 import re
 import function
 
@@ -29,6 +30,7 @@ def CheckOpenAi(client):
         return False, []
 
 def main():
+    matplotlib.use('Agg')
     url = "https://api.openai.com/v1"
     
     while True:
@@ -55,7 +57,8 @@ def main():
                     break
                 continue
     
-    modellist = [model for model in modellist if model.startswith('gpt-') and not re.search(r'-\d+$', model)]
+    # print(modellist)
+    # modellist = [model for model in modellist if model.startswith('gpt-') and not re.search(r'-\d+$', model)]
     
     while True:
         inputs = input_group(

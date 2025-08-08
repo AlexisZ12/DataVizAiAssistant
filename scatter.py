@@ -36,4 +36,4 @@ def scatter(text_in, client, llmmodel, prompt2, prompt3, prompt4, prompt5):
                                                style["mcolor"], style["msize"], style["malpha"],
                                                range["xmin"], range["xmax"], range["xstep"], range["ymin"], range["ymax"], range["ystep"],
                                                label["xlabel"], label["ylabel"], label["title"])
-    return fig, style, range, label
+    return fig, data, style, range, label

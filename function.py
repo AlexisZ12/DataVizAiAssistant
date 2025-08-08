@@ -44,7 +44,7 @@ def analyze(text_in, flag, client, llmmodel):
                         prompt2a0 = file.read()
                     with open('prompt/a/prompt3a0.txt', 'r', encoding='utf-8') as file:
                         prompt3a0 = file.read()
-                    fig, style, range, label = plot.plot(text_in, client, llmmodel, prompt2a0, prompt3a0, prompt4a, prompt5a)
+                    fig, data, style, range, label = plot.plot(text_in, client, llmmodel, prompt2a0, prompt3a0, prompt4a, prompt5a)
                     prompt3 = prompt3a0
                     
                 # 散点图
@@ -53,7 +53,7 @@ def analyze(text_in, flag, client, llmmodel):
                         prompt2a1 = file.read()
                     with open('prompt/a/prompt3a1.txt', 'r', encoding='utf-8') as file:
                         prompt3a1 = file.read()
-                    fig, style, range, label = scatter.scatter(text_in, client, llmmodel, prompt2a1, prompt3a1, prompt4a, prompt5a)
+                    fig, data, style, range, label = scatter.scatter(text_in, client, llmmodel, prompt2a1, prompt3a1, prompt4a, prompt5a)
                     prompt3 = prompt3a1
                     
                 # 条形图
@@ -62,7 +62,7 @@ def analyze(text_in, flag, client, llmmodel):
                         prompt2a2 = file.read()
                     with open('prompt/a/prompt3a2.txt', 'r', encoding='utf-8') as file:
                         prompt3a2 = file.read()
-                    fig, style, range, label = bar.bar(text_in, client, llmmodel, prompt2a2, prompt3a2, prompt4a, prompt5a)
+                    fig, data, style, range, label = bar.bar(text_in, client, llmmodel, prompt2a2, prompt3a2, prompt4a, prompt5a)
                     prompt3 = prompt3a2
                     
                 # 茎叶图
@@ -71,7 +71,7 @@ def analyze(text_in, flag, client, llmmodel):
                         prompt2a3 = file.read()
                     with open('prompt/a/prompt3a3.txt', 'r', encoding='utf-8') as file:
                         prompt3a3 = file.read()
-                    fig, style, range, label = stem.stem(text_in, client, llmmodel, prompt2a3, prompt3a3, prompt4a, prompt5a)
+                    fig, data, style, range, label = stem.stem(text_in, client, llmmodel, prompt2a3, prompt3a3, prompt4a, prompt5a)
                     prompt3 = prompt3a3
                     
                 # 填充区域图
@@ -80,7 +80,7 @@ def analyze(text_in, flag, client, llmmodel):
                         prompt2a4 = file.read()
                     with open('prompt/a/prompt3a4.txt', 'r', encoding='utf-8') as file:
                         prompt3a4 = file.read()
-                    fig, style, range, label = fillbetween.fillbetween(text_in, client, llmmodel, prompt2a4, prompt3a4, prompt4a, prompt5a)
+                    fig, data, style, range, label = fillbetween.fillbetween(text_in, client, llmmodel, prompt2a4, prompt3a4, prompt4a, prompt5a)
                     prompt3 = prompt3a4
                 
                 # 堆叠区域图
@@ -89,7 +89,7 @@ def analyze(text_in, flag, client, llmmodel):
                         prompt2a5 = file.read()
                     with open('prompt/a/prompt3a5.txt', 'r', encoding='utf-8') as file:
                         prompt3a5 = file.read()
-                    fig, style, range, label = stackplot.stackplot(text_in, client, llmmodel, prompt2a5, prompt3a5, prompt4a, prompt5a)
+                    fig, data, style, range, label = stackplot.stackplot(text_in, client, llmmodel, prompt2a5, prompt3a5, prompt4a, prompt5a)
                     prompt3 = prompt3a5
                 
                 # 阶梯图
@@ -98,7 +98,7 @@ def analyze(text_in, flag, client, llmmodel):
                         prompt2a6 = file.read()
                     with open('prompt/a/prompt3a6.txt', 'r', encoding='utf-8') as file:
                         prompt3a6 = file.read()
-                    fig, style, range, label = stairs.stairs(text_in, client, llmmodel, prompt2a6, prompt3a6, prompt4a, prompt5a)
+                    fig, data, style, range, label = stairs.stairs(text_in, client, llmmodel, prompt2a6, prompt3a6, prompt4a, prompt5a)
                     prompt3 = prompt3a6
             
             # 组装数据
@@ -119,7 +119,7 @@ def analyze(text_in, flag, client, llmmodel):
                 next = input_group(
                     "Continuing modifications",
                     [
-                        textarea("Please describe the request you are modifying:", rows = 5, placeholder="Your request", name="demand"),
+                        textarea("Please describe the request you are modifying:", rows = 3, placeholder="Your request", name="demand"),
                         actions(buttons=[{'label': 'Edit the Format', 'value': 1},
                                             {'label': 'Edit the Data', 'value': 2},
                                             {'label': 'Show the Figure', 'value': 0},
@@ -136,6 +136,7 @@ def analyze(text_in, flag, client, llmmodel):
 
                     case 0:
                         fig.show()
+                        continue
                     
                     case 1:
                         fig.close()
@@ -158,8 +159,6 @@ def analyze(text_in, flag, client, llmmodel):
                         openai_out = client.chat.completions.create(model = llmmodel, messages = [{"role": "user", "content": prompt_new}]).choices[0].message.content
                         print(openai_out)
                         data = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-
 
                 match type["id"]:
                     case 0:
@@ -236,7 +235,7 @@ def analyze(text_in, flag, client, llmmodel):
                     with open('prompt/b/prompt3b0.txt', 'r', encoding='utf-8') as file:
                         prompt3b0 = file.read()   
                     
-                    fig, style, range, label = plot.plot(text_in, client, llmmodel, prompt2b0, prompt3b0, prompt4b, prompt5b)
+                    fig, data, style, range, label = plot.plot(text_in, client, llmmodel, prompt2b0, prompt3b0, prompt4b, prompt5b)
                     prompt3 = prompt3b0
                     
                 # 散点图
@@ -246,7 +245,7 @@ def analyze(text_in, flag, client, llmmodel):
                     with open('prompt/b/prompt3b1.txt', 'r', encoding='utf-8') as file:
                         prompt3b1 = file.read()
                     
-                    fig, style, range, label = scatter.scatter(text_in, client, llmmodel, prompt2b1, prompt3b1, prompt4b, prompt5b)
+                    fig, data, style, range, label = scatter.scatter(text_in, client, llmmodel, prompt2b1, prompt3b1, prompt4b, prompt5b)
                     prompt3 = prompt3b1
                     
                 # 条形图
@@ -256,7 +255,7 @@ def analyze(text_in, flag, client, llmmodel):
                     with open('prompt/b/prompt3b2.txt', 'r', encoding='utf-8') as file:
                         prompt3b2 = file.read()
                     
-                    fig, style, range, label = bar.bar(text_in, client, llmmodel, prompt2b2, prompt3b2, prompt4b, prompt5b)
+                    fig, data, style, range, label = bar.bar(text_in, client, llmmodel, prompt2b2, prompt3b2, prompt4b, prompt5b)
                     prompt3 = prompt3b2
                     
                 # 茎叶图
@@ -266,7 +265,7 @@ def analyze(text_in, flag, client, llmmodel):
                     with open('prompt/b/prompt3b3.txt', 'r', encoding='utf-8') as file:
                         prompt3b3 = file.read()
                     
-                    fig, style, range, label = stem.stem(text_in, client, llmmodel, prompt2b3, prompt3b3, prompt4a, prompt5b)
+                    fig, data, style, range, label = stem.stem(text_in, client, llmmodel, prompt2b3, prompt3b3, prompt4a, prompt5b)
                     prompt3 = prompt3b3
                     
                 # 填充区域图
@@ -276,7 +275,7 @@ def analyze(text_in, flag, client, llmmodel):
                     with open('prompt/b/prompt3b4.txt', 'r', encoding='utf-8') as file:
                         prompt3b4 = file.read()
                     
-                    fig, style, range, label = fillbetween.fillbetween(text_in, client, llmmodel, prompt2b4, prompt3b4, prompt4b, prompt5b)
+                    fig, data, style, range, label = fillbetween.fillbetween(text_in, client, llmmodel, prompt2b4, prompt3b4, prompt4b, prompt5b)
                     prompt3 = prompt3b4
                 
                 # 堆叠区域图
@@ -286,7 +285,7 @@ def analyze(text_in, flag, client, llmmodel):
                     with open('prompt/b/prompt3b5.txt', 'r', encoding='utf-8') as file:
                         prompt3b5 = file.read()
                     
-                    fig, style, range, label = stackplot.stackplot(text_in, client, llmmodel, prompt2b5, prompt3b5, prompt4b, prompt5b)
+                    fig, data, style, range, label = stackplot.stackplot(text_in, client, llmmodel, prompt2b5, prompt3b5, prompt4b, prompt5b)
                     prompt3 = prompt3b5
                 
                 # 阶梯图
@@ -295,7 +294,7 @@ def analyze(text_in, flag, client, llmmodel):
                         prompt2b6 = file.read()
                     with open('prompt/b/prompt3b6.txt', 'r', encoding='utf-8') as file:
                         prompt3b6 = file.read()
-                    fig, style, range, label = stairs.stairs(text_in, client, llmmodel, prompt2b6, prompt3b6, prompt4b, prompt5b)
+                    fig, data, style, range, label = stairs.stairs(text_in, client, llmmodel, prompt2b6, prompt3b6, prompt4b, prompt5b)
                     prompt3 = prompt3b6
                     
             # 组装数据
@@ -333,6 +332,7 @@ def analyze(text_in, flag, client, llmmodel):
 
                     case 0:
                         fig.show()
+                        continue
                     
                     case 1:
                         fig.close()
@@ -355,8 +355,6 @@ def analyze(text_in, flag, client, llmmodel):
                         openai_out = client.chat.completions.create(model = llmmodel, messages = [{"role": "user", "content": prompt_new}]).choices[0].message.content
                         print(openai_out)
                         data = json.loads("{" + openai_out.split("{", 1)[1].split("}", 1)[0] + "}")
-
-
 
                 match type["id"]:
                     case 0:

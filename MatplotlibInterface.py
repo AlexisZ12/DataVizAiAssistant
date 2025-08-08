@@ -8,7 +8,7 @@ HATCHSTYLE = ['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*', ' ']
 # COLOR = ['black', 'silver', 'gray', 'white', 'maroon', 'red', 'purple', 'fuchsia', 'green', 'lime', 'olive', 'yellow', 'navy', 'blue', 'teal', 'aqua']
 COLOR = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w', 'orange', 'pink']
 
-plt.rcParams['font.sans-serif']=['SimHei','Songti SC','STFangsong']
+matplotlib.rcParams['font.sans-serif']=['SimHei','Songti SC','STFangsong']
 matplotlib.rcParams['axes.unicode_minus'] = False
 
 def PlotInterface(X_value, Y_value, Y_value_label,
