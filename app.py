@@ -1,16 +1,8 @@
 from openai import OpenAI, APIConnectionError, AuthenticationError, APIStatusError
 from pywebio.input import *
 from pywebio.output import *
-from pywebio import start_server
-import matplotlib
 import re
 import function
-
-def contains_gpt(my_list):
-    for s in my_list:
-        if isinstance(s, str) and "gpt" in s:
-            return True
-    return False
 
 def CheckOpenAi(client):
     try:
@@ -36,13 +28,12 @@ def CheckOpenAi(client):
         return False, []
 
 def main():
-    matplotlib.use('Agg')
     url = "https://api.openai.com/v1"
     
     while True:
         setting = input_group("config",
                             [
-                                input("API Key", name='key', type='password'),
+                                input("API Key", name='key'),
                                 input("Base URL", name='base', value=url),
                                 actions("", [{'label': 'OpenAi Standard Format', 'value': 1},
                                              {'label': 'DeepSeek Standard Format', 'value': 2},
@@ -67,8 +58,8 @@ def main():
                     break
                 continue
     
-    if contains_gpt(modellist):
-        modellist = list(set(modellist) & set(["gpt-4", "gpt-4-turbo", "gpt-4o", "gpt-4o-mini", "o1-preview", "o1-mini"]))
+    # print(modellist)
+    # modellist = [model for model in modellist if model.startswith('gpt-') and not re.search(r'-\d+$', model)]
     
     while True:
         inputs = input_group(
@@ -84,4 +75,4 @@ def main():
         function.analyze(inputs['demand'], inputs['flag'], client, inputs['model'])
     
 if __name__ == '__main__':
-    start_server(main, port=8080)
+    main()

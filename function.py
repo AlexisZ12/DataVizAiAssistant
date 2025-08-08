@@ -315,7 +315,7 @@ def analyze(text_in, flag, client, llmmodel):
                 next = input_group(
                     "Continuing modifications",
                     [
-                        textarea("Please describe the request you are modifying:", rows = 5, placeholder="请描述您的要求：", name="demand"),
+                        textarea("Please describe the request you are modifying:", rows = 5, placeholder="Your request", name="demand"),
                         actions(buttons=[{'label': 'Edit the Format', 'value': 1},
                                             {'label': 'Edit the Data', 'value': 2},
                                             {'label': 'Show the Figure', 'value': 0},
