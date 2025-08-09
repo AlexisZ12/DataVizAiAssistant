@@ -11,13 +11,6 @@ import fillbetween
 import stackplot
 import stairs
 
-with open('config/configExample.json', 'r', encoding = 'utf-8') as jsExample:
-    jsEx = json.load(jsExample)
-OpenAiConfigExample = jsEx['OpenAiConfigExample']
-DeepSeekConfigExample = jsEx['DeepSeekConfigExample']
-OllamaConfigExample = jsEx['OllamaConfigExample']
-LmStudioConfigExample = jsEx['LmStudioConfigExample']
-
 def analyze(text_in, flag, client, llmmodel):
     match flag:
         # 不强制思考

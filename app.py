@@ -1,6 +1,7 @@
 from openai import OpenAI, APIConnectionError, AuthenticationError, APIStatusError
 from pywebio.input import *
 from pywebio.output import *
+import json
 import function
 
 def contains_gpt(my_list):
@@ -33,13 +34,17 @@ def CheckOpenAi(client):
         return False, []
 
 def main():
-    url = "https://api.openai.com/v1"
+    with open('config/config.json', 'r', encoding='utf-8') as f:
+        config = json.load(f)
+        
+    key = config['key']
+    url = config['base']
     
     while True:
         setting = input_group("config",
                             [
-                                input("API Key", name='key'),
-                                input("Base URL", name='base', value=url),
+                                input("API Key", name='key', value=config['key'], type='password'),
+                                input("Base URL", name='base', value=config['base']),
                                 actions("", [{'label': 'OpenAi Standard Format', 'value': 1},
                                              {'label': 'DeepSeek Standard Format', 'value': 2},
                                              {'label': 'Kimi Standard Format', 'value': 3},
@@ -48,16 +53,22 @@ def main():
 
         match setting['act']:
             case 1:
-                url = "https://api.openai.com/v1"
+                config['base'] = "https://api.openai.com/v1"
                 continue
             case 2:
-                url = "https://api.deepseek.com"
+                config['base'] = "https://api.deepseek.com"
                 continue
             case 3:
-                url = "https://api.moonshot.cn/v1"
+                config['base'] = "https://api.moonshot.cn/v1"
                 continue
             case 0:
                 client = OpenAI(api_key=setting['key'], base_url=setting['base'])
+                config = {
+                    'key': setting['key'],
+                    'base': setting['base']
+                }
+                with open('config/config.json', 'w', encoding='utf-8') as f:
+                    json.dump(config, f, indent=4, ensure_ascii=False)
                 state, modellist = CheckOpenAi(client)
                 if state:
                     break
