@@ -3,6 +3,7 @@ from pywebio.input import *
 from pywebio.output import *
 import json
 import function
+import ui
 
 def contains_gpt(my_list):
     for s in my_list:
@@ -34,6 +35,8 @@ def CheckOpenAi(client):
         return False, []
 
 def main():
+    ui.MainUI()
+    
     with open('config/config.json', 'r', encoding='utf-8') as f:
         config = json.load(f)
         

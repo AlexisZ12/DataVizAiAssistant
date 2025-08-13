@@ -4,7 +4,7 @@
 
 **DataVizAiAssistant** 是一个创新的开源工具，结合人工智能技术与数据可视化功能，帮助用户轻松从自然语言描述生成专业的数据可视化图表。项目使用GPT模型（通过OpenAI API或兼容接口）解析用户需求，自动生成Matplotlib可视化图表，并支持交互式修改。
 
-在线体验：
+在线体验：http://115.190.155.135:8080/
 
 ## ✨ 核心功能
 
@@ -113,5 +113,9 @@ pip install pywebio
 
 ## 📬 联系我们
 
-- ⭐ 欢迎Star: 如果喜欢这个项目，请在GitHub上点个Star支持我们
-- 📬 联系邮箱: 2242809239@qq.com 
+- 📂 **GitHub项目仓库**: [AlexisZ12/DataVizAiAssistant](https://github.com/AlexisZ12/DataVizAiAssistant)
+- 📂 **爱发电项目仓库**: [DataVizAiAssistant](https://afdian.com/album/9049811c77e711f085b352540025c377)
+- ⭐ **欢迎Star**: 如果喜欢这个项目，请在GitHub上点个Star支持我们
+- ✉️ **联系邮箱**: 2242809239@qq.com
+- 💬 **微信**: `Alexis_12_Z`
+- 💖 **爱发电**: [AlexisZ12](https://afdian.com/a/AlexisZ12)

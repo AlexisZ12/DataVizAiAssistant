@@ -4,6 +4,7 @@ from pywebio.output import *
 from pywebio import start_server
 import matplotlib
 import function
+import ui
 
 def contains_gpt(my_list):
     for s in my_list:
@@ -35,6 +36,8 @@ def CheckOpenAi(client):
         return False, []
     
 def main():
+    ui.MainUI()
+    
     matplotlib.use('Agg')
     url = "https://api.openai.com/v1"
     
