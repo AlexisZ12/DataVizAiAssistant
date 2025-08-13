@@ -6,7 +6,7 @@ def MainUI():
 # 🚀 AI 数据可视化分析平台
 
 ## 🌟 项目简介
-**AI Visualisation** 是一个利用大型语言模型进行智能数据分析和可视化展示的工具。只需简单描述你的分析需求，AI将自动完成数据处理、分析并生成专业的图表结果。
+**DataVizAiAssistant** 是一个利用大型语言模型进行智能数据分析和可视化展示的工具。只需简单描述你的分析需求，AI将自动完成数据处理、分析并生成专业的图表结果。
 - 📂 **GitHub项目仓库**: [AlexisZ12/DataVizAiAssistant](https://github.com/AlexisZ12/DataVizAiAssistant)
 - 📂 **爱发电项目仓库**: [DataVizAiAssistant](https://afdian.com/album/9049811c77e711f085b352540025c377)
 - ⭐ **欢迎Star**: 如果喜欢这个项目，请在GitHub上点个Star支持我们
