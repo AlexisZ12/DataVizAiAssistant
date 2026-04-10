@@ -51,9 +51,10 @@ git clone git@github.com:AlexisZ12/DataVizAiAssistant.git
 
 2. **安装依赖**
 ```bash
-pip install opanai
+pip install openai
 pip install matplotlib
 pip install pywebio
+pip install python-dotenv
 ```
 
 3. **本地运行**
@@ -62,7 +63,26 @@ pip install pywebio
 
 4. **部署云端**
 
-运行`web.py`程序，默认运行在 https://127.0.0.1:8080/
+程序默认运行在 http://127.0.0.1:8080/
+
+- **交互模式**：运行 `web.py`，启动后需在界面中输入 API Key 等配置，适合需要灵活切换配置的场景
+- **预配置模式**：运行 `web_configured.py`，从 `.env` 文件读取预设配置，适合一键启动或企业内部部署
+
+   首次使用预配置模式需要创建 `.env` 文件：
+   ```bash
+   cp .env.example .env
+   ```
+   然后编辑 `.env` 文件，填入你的 API Key 和模型配置：
+   ```
+   OPENAI_API_KEY=your-api-key-here
+   OPENAI_BASE_URL=https://api.openai.com/v1
+   MODEL=gpt-4o
+   ```
+
+   运行命令：
+   ```bash
+   python web_configured.py
+   ```
 
 ## 🖼️ 支持的可视化类型
 

@@ -36,7 +36,7 @@ def CheckOpenAi(client):
         return False, []
     
 def main():
-    ui.MainUI()
+    ui.MainUI_web()
     
     matplotlib.use('Agg')
     url = "https://api.openai.com/v1"

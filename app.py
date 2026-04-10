@@ -35,7 +35,7 @@ def CheckOpenAi(client):
         return False, []
 
 def main():
-    ui.MainUI()
+    ui.MainUI_app()
     
     with open('config/config.json', 'r', encoding='utf-8') as f:
         config = json.load(f)
