@@ -81,7 +81,7 @@ pip install python-dotenv
 
    运行命令：
    ```bash
-   python web_configured.py
+   python web_preset.py
    ```
 
 ## 🖼️ 支持的可视化类型
