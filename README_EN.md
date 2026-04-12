@@ -147,7 +147,13 @@ python web_preset.py
 
 **Input Description:**
 
-> In 2025, the global solar power industry experienced rapid growth. According to the International Renewable Energy Agency (IRENA) report, the top five solar power countries have seen significant increases in installed capacity over the past year. Key data: China: 50 GW new capacity, 25% global market share; USA: 30 GW new capacity, 15% global market share; India: 20 GW new capacity, 10% global market share; Germany: 12 GW new capacity, 6% global market share; Japan: 8 GW new capacity, 4% global market share.
+> 2025年，全球太阳能发电行业经历了快速增长。根据国际可再生能源署（IRENA）的报告，全球五大太阳能发电国的装机容量在过去一年内都有显著增长。以下是这些国家的新增装机容量和占全球市场的比例。  
+> 关键数据：  
+> 中国：新增装机容量 50 GW，占全球市场的 25%  
+> 美国：新增装机容量 30 GW，占全球市场的 15%  
+> 印度：新增装机容量 20 GW，占全球市场的 10%  
+> 德国：新增装机容量 12 GW，占全球市场的 6%  
+> 日本：新增装机容量 8 GW，占全球市场的 4%
 
 **Generated Result:**
 
@@ -159,7 +165,7 @@ python web_preset.py
 
 **Input Description:**
 
-> From the 1st to the 7th of this month, the stock of TechGen Inc. (TGI) showed some fluctuations. On the 1st, the stock opened at $152.45 and closed at $158.72. The next day, it saw a slight dip, opening at $157.20 and finishing at $155.35...
+> From the 1st to the 7th of this month, the stock of TechGen Inc. (TGI) showed some fluctuations. On the 1st, the stock opened at $152.45 and closed at $158.72. The next day, it saw a slight dip, opening at $157.20 and finishing at $155.35. On the 3rd, it bounced back, opening at $156.10 and closing at $160.55. The 4th saw a more significant drop, starting at $159.00 and ending at $152.85. Afterward, the stock demonstrated a steady recovery with an opening price of $153.50 on the 5th, closing at $157.90. On the 6th, it slightly rose again, opening at $158.00 and closing at $161.25. Finally, on the 7th, TechGen Inc. saw its highest price of the week, opening at $162.00 and closing at $163.80, ending the week on a positive note.
 
 **Generated Result:**
 
