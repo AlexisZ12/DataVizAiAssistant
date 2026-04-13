@@ -2,7 +2,7 @@
 
 # DataVizAiAssistant
 
-**AI-Powered Data Visualization Assistant**
+**AI-Powered Data Visualization Assistant** — An intelligent chart generation tool powered by Large Language Models, making data visualization accessible to everyone. No coding skills required—simply describe your data and analysis needs in natural language, and watch as professional Matplotlib charts are generated automatically. Supporting 7 chart types including line plots, scatter plots, and bar charts, with advanced features like interactive editing, thinking modes, and multi-platform API compatibility. Perfect for data analysis, report generation, and academic research.
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10+-yellow.svg)](https://www.python.org/)

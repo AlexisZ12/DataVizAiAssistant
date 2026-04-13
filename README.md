@@ -2,7 +2,7 @@
 
 # DataVizAiAssistant
 
-**AI驱动的数据可视化助手**
+**AI驱动的数据可视化助手** — 基于大语言模型的智能图表生成工具，让数据可视化变得触手可及。无需编程基础，只需用自然语言描述您的数据和分析需求，即可自动生成专业的 Matplotlib 可视化图表。支持线图、散点图、条形图等7种图表类型，并具备交互式修改、思考模式、多平台 API 兼容等高级功能，是数据分析、报告生成、学术研究的得力助手。
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10+-yellow.svg)](https://www.python.org/)
