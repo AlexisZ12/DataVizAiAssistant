@@ -19,8 +19,6 @@ import argparse
 import sys
 import os
 import json
-import tempfile
-
 from openai import OpenAI
 
 import matplotlib
@@ -148,8 +146,11 @@ def generate(text_in, output=None):
         output_path = output
         os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
     else:
-        fd, output_path = tempfile.mkstemp(suffix=".png", prefix="dataviz_")
-        os.close(fd)
+        from datetime import datetime
+        output_dir = os.path.join(os.getcwd(), "tmp")
+        os.makedirs(output_dir, exist_ok=True)
+        filename = f"dataviz_{datetime.now().strftime('%Y%m%d%H%M')}.png"
+        output_path = os.path.join(output_dir, filename)
     fig.savefig(output_path, format="png")
     fig.close()
 
