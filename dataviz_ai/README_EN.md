@@ -8,8 +8,8 @@
 [![Python](https://img.shields.io/badge/Python-3.10+-yellow.svg)](https://www.python.org/)
 [![OpenAI](https://img.shields.io/badge/OpenAI-API-green.svg)](https://openai.com/)
 [![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-orange.svg)](https://matplotlib.org/)
-[![OpenClaw](https://img.shields.io/badge/OpenClaw-Skill-pink.svg)](https://github.com/openclaw)
-[![QwenPaw](https://img.shields.io/badge/QwenPaw-Skill-cyan.svg)](https://github.com/qwenpaw)
+[![OpenClaw](https://img.shields.io/badge/OpenClaw-Skill-pink.svg)](https://github.com/openclaw/openclaw)
+[![QwenPaw](https://img.shields.io/badge/QwenPaw-Skill-cyan.svg)](https://github.com/agentscope-ai/QwenPaw)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet.svg)](https://claude.ai/code)
 
 [中文](README.md) | [English](README_EN.md)
