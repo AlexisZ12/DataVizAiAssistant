@@ -72,9 +72,9 @@ pip install openai matplotlib numpy
 ### Set Environment Variables
 
 ```bash
-export API_KEY="sk-your-api-key"
-export BASE_URL="https://api.openai.com/v1"
-export MODEL="gpt-4o"
+export DATAVIZ_AI_API_KEY="sk-your-api-key"
+export DATAVIZ_AI_BASE_URL="https://api.openai.com/v1"
+export DATAVIZ_AI_MODEL="gpt-4o"
 ```
 
 All three environment variables are **required** with no defaults.
@@ -107,9 +107,9 @@ python scripts/dataviz_ai.py "GDP comparison: Shanghai vs Beijing" -o ./chart.pn
 
 | Variable | Required | Description |
 |----------|:--------:|-------------|
-| `API_KEY` | Yes | LLM API key |
-| `BASE_URL` | Yes | API base URL |
-| `MODEL` | Yes | Model name |
+| `DATAVIZ_AI_API_KEY` | Yes | LLM API key |
+| `DATAVIZ_AI_BASE_URL` | Yes | API base URL |
+| `DATAVIZ_AI_MODEL` | Yes | Model name |
 
 ---
 

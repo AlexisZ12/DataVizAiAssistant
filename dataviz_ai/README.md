@@ -72,9 +72,9 @@ pip install openai matplotlib numpy
 ### 设置环境变量
 
 ```bash
-export API_KEY="sk-your-api-key"
-export BASE_URL="https://api.openai.com/v1"
-export MODEL="gpt-4o"
+export DATAVIZ_AI_API_KEY="sk-your-api-key"
+export DATAVIZ_AI_BASE_URL="https://api.openai.com/v1"
+export DATAVIZ_AI_MODEL="gpt-4o"
 ```
 
 三个环境变量均为**必需**，不提供默认值。
@@ -107,9 +107,9 @@ python scripts/dataviz_ai.py "画出上海和北京各季度GDP对比" -o ./char
 
 | 变量 | 必需 | 说明 |
 |------|:----:|------|
-| `API_KEY` | 是 | LLM API 密钥 |
-| `BASE_URL` | 是 | API 基础 URL |
-| `MODEL` | 是 | 模型名称 |
+| `DATAVIZ_AI_API_KEY` | 是 | LLM API 密钥 |
+| `DATAVIZ_AI_BASE_URL` | 是 | API 基础 URL |
+| `DATAVIZ_AI_MODEL` | 是 | 模型名称 |
 
 ---
 

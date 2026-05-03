@@ -7,9 +7,9 @@ Usage:
     python dataviz_ai.py "画出2024年各月销售额趋势"
 
 Environment variables (all required):
-    API_KEY     API key for OpenAI-compatible service
-    BASE_URL    Base URL of the API
-    MODEL       Model name to use
+    DATAVIZ_AI_API_KEY     API key for OpenAI-compatible service
+    DATAVIZ_AI_BASE_URL    Base URL of the API
+    DATAVIZ_AI_MODEL       Model name to use
 
 Output:
     Prints the path to the generated PNG image on stdout.
@@ -74,11 +74,11 @@ def _validate_phase1_result(result):
 
 def generate(text_in, output=None):
     # Read environment variables
-    api_key = os.environ.get("API_KEY")
-    base_url = os.environ.get("BASE_URL")
-    model = os.environ.get("MODEL")
+    api_key = os.environ.get("DATAVIZ_AI_API_KEY")
+    base_url = os.environ.get("DATAVIZ_AI_BASE_URL")
+    model = os.environ.get("DATAVIZ_AI_MODEL")
 
-    for name, value in [("API_KEY", api_key), ("BASE_URL", base_url), ("MODEL", model)]:
+    for name, value in [("DATAVIZ_AI_API_KEY", api_key), ("DATAVIZ_AI_BASE_URL", base_url), ("DATAVIZ_AI_MODEL", model)]:
         if not value:
             print(f"Error: {name} environment variable is required", file=sys.stderr)
             sys.exit(1)

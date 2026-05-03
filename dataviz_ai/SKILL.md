@@ -41,9 +41,9 @@ All three variables are **required**:
 
 | Variable          | Description                             |
 |-------------------|-----------------------------------------|
-| `API_KEY`  | API key for the LLM service             |
-| `BASE_URL` | Base URL for OpenAI-compatible API      |
-| `MODEL`           | Model name to use                       |
+| `DATAVIZ_AI_API_KEY`  | API key for the LLM service             |
+| `DATAVIZ_AI_BASE_URL` | Base URL for OpenAI-compatible API      |
+| `DATAVIZ_AI_MODEL`           | Model name to use                       |
 
 ## Supported Chart Types
 
