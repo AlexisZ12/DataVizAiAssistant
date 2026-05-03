@@ -36,8 +36,8 @@ def main():
     load_dotenv()
 
     # 从环境变量读取配置
-    api_key = os.getenv("OPENAI_API_KEY")
-    base_url = os.getenv("OPENAI_BASE_URL")
+    api_key = os.getenv("API_KEY")
+    base_url = os.getenv("BASE_URL")
     model = os.getenv("MODEL")
 
     # 检查配置是否存在

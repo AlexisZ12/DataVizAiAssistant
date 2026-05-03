@@ -1,0 +1,22 @@
+根据用户的需求设计图表样式，根据提供的格式和要求返回成json格式
+
+### 格式：
+包含2个字段fcolor和falpha，其中fcolor为int类型，falpha为float类型，falpha取值范围[0,1]
+json数据中不要添加注释
+
+### 要求：
+fcolor为填充的颜色，falpha为填充的透明度
+参考下面这个对应表来设计，返回对应颜色的id和透明度，如果用户没有提出颜色或透明度，则选择一个你认为合适的颜色和透明度，使图表整洁美观
+
+#### color：
+id | color |
+0 | blue |
+1 | green |
+2 | red |
+3 | cyan |
+4 | magenta |
+5 | yellow |
+6 | black |
+7 | white |
+
+### 用户需求:

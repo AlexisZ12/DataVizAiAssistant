@@ -2,7 +2,7 @@
 
 # DataVizAiAssistant
 
-**AI驱动的数据可视化助手** — 基于大语言模型的智能图表生成工具，让数据可视化变得触手可及。无需编程基础，只需用自然语言描述您的数据和分析需求，即可自动生成专业的 Matplotlib 可视化图表。支持线图、散点图、条形图等7种图表类型，并具备交互式修改、思考模式、多平台 API 兼容等高级功能，是数据分析、报告生成、学术研究的得力助手。
+**AI驱动的数据可视化助手** — 基于大语言模型的智能图表生成工具，让数据可视化变得触手可及。无需编程基础，只需用自然语言描述您的数据和分析需求，即可自动生成专业的 Matplotlib 可视化图表。支持线图、散点图、条形图等7种图表类型，并具备交互式修改、思考模式、多平台 API 兼容等高级功能，是数据分析、报告生成、学术研究的得力助手。同时提供 CLI Skill，可集成到 OpenClaw、QwenPaw、Claude Code 等 AI 编程助手中使用。
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10+-yellow.svg)](https://www.python.org/)
@@ -115,8 +115,8 @@ cp .env.example .env
 
 2. 编辑 `.env` 文件：
 ```env
-OPENAI_API_KEY=your-api-key-here
-OPENAI_BASE_URL=https://api.openai.com/v1
+API_KEY=your-api-key-here
+BASE_URL=https://api.openai.com/v1
 MODEL=gpt-4o
 ```
 
@@ -124,6 +124,24 @@ MODEL=gpt-4o
 ```bash
 python web_preset.py
 ```
+
+#### 方式三：Skill / CLI 模式
+
+将图表生成能力作为命令行工具或 AI 编程助手 Skill 使用，无 Web UI 依赖，输出为 PNG 文件。
+
+```bash
+cd dataviz_ai
+pip install openai matplotlib numpy
+
+export API_KEY="sk-your-api-key"
+export BASE_URL="https://api.openai.com/v1"
+export MODEL="gpt-4o"
+
+python scripts/dataviz_ai.py "画出2024年各月销售额趋势，1月100,2月200,3月150"
+# 输出: /tmp/dataviz_xxxxx.png
+```
+
+支持指定输出路径：`-o ./chart.png`，详见 [dataviz_ai/README.md](dataviz_ai/README.md)。
 
 ---
 

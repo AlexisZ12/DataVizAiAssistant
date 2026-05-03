@@ -2,7 +2,7 @@
 
 # DataVizAiAssistant
 
-**AI-Powered Data Visualization Assistant** — An intelligent chart generation tool powered by Large Language Models, making data visualization accessible to everyone. No coding skills required—simply describe your data and analysis needs in natural language, and watch as professional Matplotlib charts are generated automatically. Supporting 7 chart types including line plots, scatter plots, and bar charts, with advanced features like interactive editing, thinking modes, and multi-platform API compatibility. Perfect for data analysis, report generation, and academic research.
+**AI-Powered Data Visualization Assistant** — An intelligent chart generation tool powered by Large Language Models, making data visualization accessible to everyone. No coding skills required—simply describe your data and analysis needs in natural language, and watch as professional Matplotlib charts are generated automatically. Supporting 7 chart types including line plots, scatter plots, and bar charts, with advanced features like interactive editing, thinking modes, and multi-platform API compatibility. Perfect for data analysis, report generation, and academic research. A CLI Skill is also available for integration into AI coding assistants like OpenClaw, QwenPaw, and Claude Code.
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10+-yellow.svg)](https://www.python.org/)
@@ -115,8 +115,8 @@ cp .env.example .env
 
 2. Edit `.env` file:
 ```env
-OPENAI_API_KEY=your-api-key-here
-OPENAI_BASE_URL=https://api.openai.com/v1
+API_KEY=your-api-key-here
+BASE_URL=https://api.openai.com/v1
 MODEL=gpt-4o
 ```
 
@@ -124,6 +124,24 @@ MODEL=gpt-4o
 ```bash
 python web_preset.py
 ```
+
+#### Option 3: Skill / CLI Mode
+
+Use the chart generation capability as a command-line tool or AI coding assistant Skill, with no Web UI dependency, outputting PNG files.
+
+```bash
+cd dataviz_ai
+pip install openai matplotlib numpy
+
+export API_KEY="sk-your-api-key"
+export BASE_URL="https://api.openai.com/v1"
+export MODEL="gpt-4o"
+
+python scripts/dataviz_ai.py "2024 monthly sales trend: Jan 100, Feb 200, Mar 150"
+# Output: /tmp/dataviz_xxxxx.png
+```
+
+Supports custom output path via `-o ./chart.png`. See [dataviz_ai/README_EN.md](dataviz_ai/README_EN.md) for details.
 
 ---
 
