@@ -1,0 +1,23 @@
+根据用户的需求设计图表样式，根据提供的格式和要求返回成json格式
+
+### 格式：
+包含3个字段mcolor，msize和malpha，其中mcolor和msize为一维int数组，malpha为一维float数组，falpha取值范围[0,1]
+json数据中不要添加注释
+
+### 要求：
+mcolor，msize和malpha大小都为m，m为数据对象的个数
+mcolor为散点图点的颜色，msize为散点图点的大小，malpha为散点图点的透明度
+参考下面这个对应表来设计，返回对应颜色的id，大小和透明度，如果用户没有提出颜色，大小或透明度，则选择一个你认为合适的颜色，大小和透明度，使图表整洁美观，如无特殊说明不同的使用相同的颜色和大小，使用不同的透明度做区分
+
+#### color：
+id | color |
+0 | blue |
+1 | green |
+2 | red |
+3 | cyan |
+4 | magenta |
+5 | yellow |
+6 | black |
+7 | white |
+
+### 用户需求:
