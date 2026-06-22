@@ -61,55 +61,85 @@ DataViz AI Assistant Skill packages the [DataVizAiAssistant](https://github.com/
 
 ---
 
-## 📦 Quick Start
+## 🚀 Quick Start
 
-### Install Dependencies
+### 📦 Installation
 
 ```bash
+# 1. Install Python dependencies
 pip install openai matplotlib numpy
+
+# 2. Install the skill to your preferred platform
+
+# Claude Code
+cp -r skills/dataviz-ai ~/.claude/skills/dataviz-ai
+
+# OpenClaw
+cp -r skills/dataviz-ai ~/.openclaw/skills/dataviz-ai
+
+# QwenPaw
+cp -r skills/dataviz-ai ~/.copaw/skill_pool/dataviz-ai
 ```
 
-### Set Environment Variables
+After installation, invoke `/dataviz-ai` directly in the platform chat.
+
+### 🎮 Usage
+
+**Method 1: Platform Skill (Recommended)**
+
+Use directly in the platform chat:
+
+```
+/dataviz-ai "2024 monthly sales trend: Jan 100, Feb 200, Mar 150"
+/dataviz-ai "Compare GDP of Shanghai and Beijing by quarter" -o ./chart.png
+```
+
+**Method 2: Direct Script Execution (Testing/Debugging)**
 
 ```bash
+# Navigate to scripts directory
+cd skills/dataviz-ai/scripts
+
+# Set environment variables
 export DATAVIZ_AI_API_KEY="sk-your-api-key"
 export DATAVIZ_AI_BASE_URL="https://api.openai.com/v1"
 export DATAVIZ_AI_MODEL="gpt-4o"
-```
 
-All three environment variables are **required** with no defaults.
-
-### Run
-
-```bash
-cd dataviz_ai
-python scripts/dataviz_ai.py "2024 monthly sales trend: Jan 100, Feb 200, Mar 150"
-```
-
-### Specify Output Path
-
-```bash
-python scripts/dataviz_ai.py "GDP comparison: Shanghai vs Beijing" -o ./chart.png
+# Generate chart
+python dataviz_ai.py "2024 monthly sales trend: Jan 100, Feb 200, Mar 150"
 ```
 
 ---
 
-## 📋 CLI Arguments
+## 📖 Usage Guide
+
+### 🔧 Arguments
 
 | Argument | Required | Description |
 |----------|:--------:|-------------|
 | `description` | Yes | Positional argument — natural language chart description |
-| `-o`, `--output` | No | Output image path (default: temp file) |
+| `-o`, `--output` | No | Output image path (default: temp directory) |
 
----
-
-## 🔧 Environment Variables
+### 🔧 Environment Variables
 
 | Variable | Required | Description |
 |----------|:--------:|-------------|
 | `DATAVIZ_AI_API_KEY` | Yes | LLM API key |
-| `DATAVIZ_AI_BASE_URL` | Yes | API base URL |
+| `DATAVIZ_AI_BASE_URL` | Yes | Base URL for OpenAI-compatible API |
 | `DATAVIZ_AI_MODEL` | Yes | Model name |
+
+### 💡 Examples
+
+```bash
+# Sales trend
+python dataviz_ai.py \
+  "2024 Jan-Jun sales: Jan 120, Feb 200, Mar 150, Apr 300, May 250, Jun 400"
+
+# Multi-city GDP comparison with custom output path
+python dataviz_ai.py \
+  "Beijing and Shanghai 2020-2024 GDP comparison: Beijing 3.6,4.0,4.1,4.4,4.9 trillion; Shanghai 3.9,4.3,4.4,4.7,5.3 trillion" \
+  -o ./gdp_comparison.png
+```
 
 ---
 
@@ -124,41 +154,6 @@ python scripts/dataviz_ai.py "GDP comparison: Shanghai vs Beijing" -o ./chart.pn
 | 4 | fill between | Range visualization, uncertainty bands |
 | 5 | stackplot | Multi-series proportion analysis |
 | 6 | stairs plot | Step/segmented data changes |
-
----
-
-## 🧭 Examples
-
-### Example 1: Sales Trend
-
-**Input:**
-
-```bash
-python scripts/dataviz_ai.py \
-  "2024 Jan-Jun sales: Jan 120, Feb 200, Mar 150, Apr 300, May 250, Jun 400"
-```
-
-**Output:**
-
-```
-/tmp/dataviz_x1a2b3.png
-```
-
-### Example 2: Multi-City Comparison
-
-**Input:**
-
-```bash
-python scripts/dataviz_ai.py \
-  "Beijing and Shanghai 2020-2024 GDP comparison: Beijing 3.6,4.0,4.1,4.4,4.9 trillion; Shanghai 3.9,4.3,4.4,4.7,5.3 trillion" \
-  -o ./gdp_comparison.png
-```
-
-**Output:**
-
-```
-./gdp_comparison.png
-```
 
 ---
 

@@ -129,19 +129,72 @@ python web_preset.py
 
 Use the chart generation capability as a command-line tool or AI coding assistant Skill, with no Web UI dependency, outputting PNG files.
 
+##### Installation
+
 ```bash
-cd dataviz_ai
+# 1. Install Python dependencies
 pip install openai matplotlib numpy
 
-export API_KEY="sk-your-api-key"
-export BASE_URL="https://api.openai.com/v1"
-export MODEL="gpt-4o"
+# 2. Install the skill to your preferred platform
 
-python scripts/dataviz_ai.py "2024 monthly sales trend: Jan 100, Feb 200, Mar 150"
-# Output: /tmp/dataviz_xxxxx.png
+# Claude Code
+cp -r skills/dataviz-ai ~/.claude/skills/dataviz-ai
+
+# OpenClaw
+cp -r skills/dataviz-ai ~/.openclaw/skills/dataviz-ai
+
+# QwenPaw
+cp -r skills/dataviz-ai ~/.copaw/skill_pool/dataviz-ai
 ```
 
-Supports custom output path via `-o ./chart.png`. See [dataviz_ai/README_EN.md](dataviz_ai/README_EN.md) for details.
+After installation, invoke `/dataviz-ai` directly in the platform chat.
+
+##### Usage
+
+**Method 1: Platform Skill (Recommended)**
+
+Use directly in the platform chat:
+
+```
+/dataviz-ai "2024 monthly sales trend: Jan 100, Feb 200, Mar 150"
+/dataviz-ai "Compare GDP of Shanghai and Beijing by quarter" -o ./chart.png
+```
+
+**Method 2: Direct Script Execution (Testing/Debugging)**
+
+```bash
+# Navigate to scripts directory
+cd skills/dataviz-ai/scripts
+
+# Set environment variables
+export DATAVIZ_AI_API_KEY="sk-your-api-key"
+export DATAVIZ_AI_BASE_URL="https://api.openai.com/v1"
+export DATAVIZ_AI_MODEL="gpt-4o"
+
+# Generate chart
+python dataviz_ai.py "2024 monthly sales trend: Jan 100, Feb 200, Mar 150"
+# Output: /tmp/dataviz_xxxxx.png
+
+# Specify output path
+python dataviz_ai.py "Compare GDP of Shanghai and Beijing by quarter" -o ./chart.png
+```
+
+##### Arguments
+
+| Argument | Required | Description |
+|----------|:--------:|-------------|
+| `description` | Yes | Positional argument, natural language description of the chart |
+| `-o`, `--output` | No | Output image path (default: temp directory) |
+
+##### Environment Variables
+
+| Variable | Required | Description |
+|----------|:--------:|-------------|
+| `DATAVIZ_AI_API_KEY` | Yes | LLM API key |
+| `DATAVIZ_AI_BASE_URL` | Yes | Base URL for OpenAI-compatible API |
+| `DATAVIZ_AI_MODEL` | Yes | Model name |
+
+See [skills/README_EN.md](skills/README_EN.md) for details.
 
 ---
 

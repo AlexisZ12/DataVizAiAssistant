@@ -61,55 +61,85 @@ DataViz AI Assistant Skill 是将 [DataVizAiAssistant](https://github.com/Alexis
 
 ---
 
-## 📦 快速开始
+## 🚀 快速开始
 
-### 安装依赖
+### 📦 安装
 
 ```bash
+# 1. 安装 Python 依赖
 pip install openai matplotlib numpy
+
+# 2. 将技能安装到对应平台
+
+# Claude Code
+cp -r skills/dataviz-ai ~/.claude/skills/dataviz-ai
+
+# OpenClaw
+cp -r skills/dataviz-ai ~/.openclaw/skills/dataviz-ai
+
+# QwenPaw
+cp -r skills/dataviz-ai ~/.copaw/skill_pool/dataviz-ai
 ```
 
-### 设置环境变量
+安装完成后，在对应平台对话中直接调用 `/dataviz-ai` 即可使用。
+
+### 🎮 基本用法
+
+**方式一：安装为平台技能（推荐）**
+
+在对应平台对话中直接使用：
+
+```
+/dataviz-ai "画出2024年各月销售额趋势，1月100,2月200,3月150"
+/dataviz-ai "画出上海和北京各季度GDP对比" -o ./chart.png
+```
+
+**方式二：直接运行脚本（测试/调试用途）**
 
 ```bash
+# 进入脚本目录
+cd skills/dataviz-ai/scripts
+
+# 设置环境变量
 export DATAVIZ_AI_API_KEY="sk-your-api-key"
 export DATAVIZ_AI_BASE_URL="https://api.openai.com/v1"
 export DATAVIZ_AI_MODEL="gpt-4o"
-```
 
-三个环境变量均为**必需**，不提供默认值。
-
-### 运行
-
-```bash
-cd dataviz_ai
-python scripts/dataviz_ai.py "画出2024年各月销售额趋势，1月100,2月200,3月150"
-```
-
-### 指定输出路径
-
-```bash
-python scripts/dataviz_ai.py "画出上海和北京各季度GDP对比" -o ./chart.png
+# 生成图表
+python dataviz_ai.py "画出2024年各月销售额趋势，1月100,2月200,3月150"
 ```
 
 ---
 
-## 📋 命令行参数
+## 📖 使用指南
+
+### 🔧 参数说明
 
 | 参数 | 必需 | 说明 |
 |------|:----:|------|
 | `description` | 是 | 位置参数，自然语言描述要生成的图表 |
 | `-o`, `--output` | 否 | 输出图片路径，不指定则保存到临时目录 |
 
----
-
-## 🔧 环境变量
+### 🔧 环境变量
 
 | 变量 | 必需 | 说明 |
 |------|:----:|------|
 | `DATAVIZ_AI_API_KEY` | 是 | LLM API 密钥 |
 | `DATAVIZ_AI_BASE_URL` | 是 | API 基础 URL |
 | `DATAVIZ_AI_MODEL` | 是 | 模型名称 |
+
+### 💡 使用示例
+
+```bash
+# 销售额趋势
+python dataviz_ai.py \
+  "2024年1-6月销售额：1月120万,2月200万,3月150万,4月300万,5月250万,6月400万"
+
+# 多城市GDP对比，指定输出路径
+python dataviz_ai.py \
+  "北京和上海2020-2024年GDP对比：北京分别为3.6,4.0,4.1,4.4,4.9万亿；上海分别为3.9,4.3,4.4,4.7,5.3万亿" \
+  -o ./gdp_comparison.png
+```
 
 ---
 
@@ -124,41 +154,6 @@ python scripts/dataviz_ai.py "画出上海和北京各季度GDP对比" -o ./char
 | 4 | 填充图 | 范围可视化、不确定性区间 |
 | 5 | 堆叠图 | 多序列比例构成分析 |
 | 6 | 阶梯图 | 分段/步进数据变化 |
-
----
-
-## 🧭 使用示例
-
-### 示例 1：销售额趋势
-
-**输入：**
-
-```bash
-python scripts/dataviz_ai.py \
-  "2024年1-6月销售额：1月120万,2月200万,3月150万,4月300万,5月250万,6月400万"
-```
-
-**输出：**
-
-```
-/tmp/dataviz_x1a2b3.png
-```
-
-### 示例 2：多城市对比
-
-**输入：**
-
-```bash
-python scripts/dataviz_ai.py \
-  "北京和上海2020-2024年GDP对比：北京分别为3.6,4.0,4.1,4.4,4.9万亿；上海分别为3.9,4.3,4.4,4.7,5.3万亿" \
-  -o ./gdp_comparison.png
-```
-
-**输出：**
-
-```
-./gdp_comparison.png
-```
 
 ---
 

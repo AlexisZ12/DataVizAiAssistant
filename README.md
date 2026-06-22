@@ -129,19 +129,72 @@ python web_preset.py
 
 将图表生成能力作为命令行工具或 AI 编程助手 Skill 使用，无 Web UI 依赖，输出为 PNG 文件。
 
+##### 安装
+
 ```bash
-cd dataviz_ai
+# 1. 安装 Python 依赖
 pip install openai matplotlib numpy
 
-export API_KEY="sk-your-api-key"
-export BASE_URL="https://api.openai.com/v1"
-export MODEL="gpt-4o"
+# 2. 将技能安装到对应平台
 
-python scripts/dataviz_ai.py "画出2024年各月销售额趋势，1月100,2月200,3月150"
-# 输出: /tmp/dataviz_xxxxx.png
+# Claude Code
+cp -r skills/dataviz-ai ~/.claude/skills/dataviz-ai
+
+# OpenClaw
+cp -r skills/dataviz-ai ~/.openclaw/skills/dataviz-ai
+
+# QwenPaw
+cp -r skills/dataviz-ai ~/.copaw/skill_pool/dataviz-ai
 ```
 
-支持指定输出路径：`-o ./chart.png`，详见 [dataviz_ai/README.md](dataviz_ai/README.md)。
+安装完成后，在对应平台对话中直接调用 `/dataviz-ai` 即可使用。
+
+##### 基本用法
+
+**方式一：安装为平台技能（推荐）**
+
+在对应平台对话中直接使用：
+
+```
+/dataviz-ai "画出2024年各月销售额趋势，1月100,2月200,3月150"
+/dataviz-ai "画出上海和北京各季度GDP对比" -o ./chart.png
+```
+
+**方式二：直接运行脚本（测试/调试用途）**
+
+```bash
+# 进入脚本目录
+cd skills/dataviz-ai/scripts
+
+# 设置环境变量
+export DATAVIZ_AI_API_KEY="sk-your-api-key"
+export DATAVIZ_AI_BASE_URL="https://api.openai.com/v1"
+export DATAVIZ_AI_MODEL="gpt-4o"
+
+# 生成图表
+python dataviz_ai.py "画出2024年各月销售额趋势，1月100,2月200,3月150"
+# 输出: /tmp/dataviz_xxxxx.png
+
+# 指定输出路径
+python dataviz_ai.py "画出上海和北京各季度GDP对比" -o ./chart.png
+```
+
+##### 参数说明
+
+| 参数 | 必需 | 说明 |
+|------|:----:|------|
+| `description` | 是 | 位置参数，自然语言描述要生成的图表 |
+| `-o`, `--output` | 否 | 输出图片路径，不指定则保存到临时目录 |
+
+##### 环境变量
+
+| 变量 | 必需 | 说明 |
+|------|:----:|------|
+| `DATAVIZ_AI_API_KEY` | 是 | LLM API 密钥 |
+| `DATAVIZ_AI_BASE_URL` | 是 | API 基础 URL |
+| `DATAVIZ_AI_MODEL` | 是 | 模型名称 |
+
+详见 [skills/README.md](skills/README.md)。
 
 ---
 
