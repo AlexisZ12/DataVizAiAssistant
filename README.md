@@ -132,7 +132,7 @@ cd frontend && npm install && cd ..
 ### 4. 启动后端
 
 ```bash
-python3 -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
+uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
 ```
 
 ### 5. 启动前端
@@ -169,7 +169,7 @@ cd frontend && npm install && cd ..
 
 ```bash
 cd DataVizAiAssistant
-setsid nohup python3 -m uvicorn backend.app.main:app \
+setsid nohup uvicorn backend.app.main:app \
   --host 127.0.0.1 --port 8000 \
   > /tmp/dataviz_backend.log 2>&1 < /dev/null &
 ```
