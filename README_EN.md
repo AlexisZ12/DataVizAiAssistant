@@ -6,9 +6,10 @@
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10+-yellow.svg)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-teal.svg)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/React-Frontend-61DAFB.svg)](https://react.dev/)
 [![OpenAI](https://img.shields.io/badge/OpenAI-API-green.svg)](https://openai.com/)
 [![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-orange.svg)](https://matplotlib.org/)
-[![PyWebIO](https://img.shields.io/badge/PyWebIO-Web%20UI-purple.svg)](https://pywebio.readthedocs.io/)
 
 [中文](README.md) | [English](README_EN.md)
 
@@ -18,13 +19,22 @@
 
 ## 📖 Overview
 
-**DataVizAiAssistant** is an innovative open-source tool that combines AI technology with data visualization capabilities, enabling users to effortlessly generate professional charts from natural language descriptions. The project uses GPT models (via OpenAI API or compatible interfaces) to parse user requirements and automatically generate Matplotlib visualizations with interactive modification support.
+**DataVizAiAssistant** is an innovative open-source tool that combines AI technology with data visualization capabilities, enabling users to effortlessly generate professional charts from natural language descriptions. The project uses Large Language Models (via OpenAI or compatible APIs) to parse user requirements and automatically generate Matplotlib visualizations with interactive modification support.
+
+The project adopts a **frontend-backend separated** architecture:
+
+| Module | Technology | Description |
+|--------|------------|-------------|
+| **frontend/** | React + Vite | Web UI (Chinese, blue-white theme) |
+| **backend/** | FastAPI | HTTP API providing generate / modify-data / modify-style endpoints |
+| **workflow/** | Python | Chart generation engine (multi-stage LLM pipeline + Matplotlib rendering) |
+| **skills/** | Python | CLI Skill for AI coding assistants |
 
 ---
 
 ## 🚀 Quick Start
 
-> **Live Demo**: http://115.190.155.135:8080/  
+> **Live Demo**: http://118.25.26.232:5173/  
 > **Video Tutorial**: https://www.bilibili.com/video/BV1tqYhzNEbx/
 
 ---
@@ -52,8 +62,8 @@
       <p>Switch between forced thinking mode (deep reasoning) and quick execution mode (simplified workflow).</p>
     </td>
     <td align="center" width="33%">
-      <h3>☁️ Flexible Deployment</h3>
-      <p>Local deployment (full features) or cloud deployment (optimized for servers).</p>
+      <h3>🏗️ Frontend-Backend Separation</h3>
+      <p>React frontend + FastAPI backend + standalone chart engine. Supports LAN access with port isolation.</p>
     </td>
     <td align="center" width="33%">
       <h3>🔒 Secure & Private</h3>
@@ -68,68 +78,156 @@
 
 | Category | Technology |
 |----------|------------|
-| **Backend** | Python 3.10+ |
+| **Frontend** | React 18 + Vite |
+| **Backend** | FastAPI + Uvicorn |
+| **Chart Engine** | Python + Matplotlib |
 | **AI SDK** | OpenAI Python SDK |
-| **Visualization** | Matplotlib |
-| **Interface** | PyWebIO |
 
 ---
 
-## 📦 Installation
+## 🧪 Local Testing
 
-### Install Dependencies
+For local development or quick trials.
 
-```bash
-pip install openai matplotlib pywebio python-dotenv
-```
+### Requirements
 
-### Clone Repository
+- Python 3.10+
+- Node.js 18+ (for frontend)
+
+### 1. Clone Repository
 
 ```bash
 git clone https://github.com/AlexisZ12/DataVizAiAssistant.git
 cd DataVizAiAssistant
 ```
 
-### Run the Application
+### 2. Configure API Key
 
-#### Option 1: Local Interactive Mode
+Create `.env` in the project root:
 
-```bash
-python app.py
-```
-
-The browser will open automatically. Settings are saved locally.
-
-#### Option 2: Cloud Deployment Mode
-
-The application runs at http://<your-local-ip>:8080/ by default.
-
-**Interactive Mode**: Run `web.py`, enter API Key and other configurations in the interface after startup. Suitable for scenarios requiring flexible configuration switching.
-
-**Pre-configured Mode**: Run `web_preset.py`, read preset configurations from `.env` file. Suitable for one-click startup or enterprise deployment.
-
-1. Create configuration file:
 ```bash
 cp .env.example .env
 ```
 
-2. Edit `.env` file:
+Edit `.env` with your LLM configuration:
+
 ```env
 API_KEY=your-api-key-here
 BASE_URL=https://api.openai.com/v1
 MODEL=gpt-4o
 ```
 
-3. Start the service:
+> You can also skip `.env` and enter API Key / Base URL / Model in the frontend "Advanced Settings" instead.
+
+### 3. Install Dependencies
+
 ```bash
-python web_preset.py
+# Python dependencies (backend + chart engine)
+pip install -r backend/requirements.txt
+
+# Frontend dependencies
+cd frontend && npm install && cd ..
 ```
 
-#### Option 3: Skill / CLI Mode
+### 4. Start Backend
+
+```bash
+python3 -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
+```
+
+### 5. Start Frontend
+
+Open a new terminal:
+
+```bash
+cd frontend
+npm run dev
+```
+
+### 6. Access
+
+Open **http://localhost:5173** in your browser, enter a description, and generate charts.
+
+---
+
+## 🚀 Server Deployment
+
+For deploying to a LAN or public server for others to access.
+
+Architecture: **frontend is open to the LAN, backend only listens on localhost**. LAN users access the service through the frontend but cannot reach the backend API port directly.
+
+### 1. Install Dependencies (same as above)
+
+```bash
+pip install -r backend/requirements.txt
+cd frontend && npm install && cd ..
+```
+
+### 2. Configure `.env` (same as above)
+
+### 3. Start Backend (localhost only, not exposed)
+
+```bash
+cd DataVizAiAssistant
+setsid nohup python3 -m uvicorn backend.app.main:app \
+  --host 127.0.0.1 --port 8000 \
+  > /tmp/dataviz_backend.log 2>&1 < /dev/null &
+```
+
+### 4. Build and Start Frontend
+
+```bash
+cd DataVizAiAssistant/frontend
+npm run build            # generates static files into dist/
+setsid nohup npm run preview > /tmp/dataviz_frontend.log 2>&1 < /dev/null &
+```
+
+> `preview` proxies `/api` requests to the backend at `127.0.0.1:8000`. Re-run `npm run build` after code changes.
+
+### 5. Open Frontend Port (5173 only, not backend 8000)
+
+```bash
+# ufw (Ubuntu/Debian)
+sudo ufw allow 5173/tcp
+
+# firewalld (CentOS/RHEL)
+sudo firewall-cmd --permanent --add-port=5173/tcp && sudo firewall-cmd --reload
+```
+
+> For cloud servers (Aliyun/Tencent/AWS), also open port 5173 in the **security group**. Backend port 8000 is bound to localhost—no need and should not be opened.
+
+### 6. Verify
+
+```bash
+# Backend health check
+curl http://127.0.0.1:8000/api/health      # {"status":"ok"}
+
+# Frontend + proxy
+curl http://127.0.0.1:5173/api/health      # {"status":"ok"}
+```
+
+Open **http://server-ip:5173** in your browser.
+
+### Logs & Stop
+
+```bash
+tail -f /tmp/dataviz_backend.log     # backend logs
+tail -f /tmp/dataviz_frontend.log    # frontend logs
+
+# Stop
+pkill -f "uvicorn backend.app.main" 2>/dev/null
+pkill -f "vite preview" 2>/dev/null
+```
+
+> **For long-running deployments**: use `systemd` to register frontend and backend as services for auto-start and auto-restart on failure.
+
+---
+
+## 🔌 Skill / CLI Mode
 
 Use the chart generation capability as a command-line tool or AI coding assistant Skill, with no Web UI dependency, outputting PNG files.
 
-##### Installation
+### Installation
 
 ```bash
 # 1. Install Python dependencies
@@ -149,7 +247,7 @@ cp -r skills/dataviz-ai ~/.copaw/skill_pool/dataviz-ai
 
 After installation, invoke `/dataviz-ai` directly in the platform chat.
 
-##### Usage
+### Usage
 
 **Method 1: Platform Skill (Recommended)**
 
@@ -179,14 +277,14 @@ python dataviz_ai.py "2024 monthly sales trend: Jan 100, Feb 200, Mar 150"
 python dataviz_ai.py "Compare GDP of Shanghai and Beijing by quarter" -o ./chart.png
 ```
 
-##### Arguments
+### Arguments
 
 | Argument | Required | Description |
 |----------|:--------:|-------------|
 | `description` | Yes | Positional argument, natural language description of the chart |
 | `-o`, `--output` | No | Output image path (default: temp directory) |
 
-##### Environment Variables
+### Environment Variables
 
 | Variable | Required | Description |
 |----------|:--------:|-------------|

@@ -6,9 +6,10 @@
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10+-yellow.svg)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-teal.svg)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/React-Frontend-61DAFB.svg)](https://react.dev/)
 [![OpenAI](https://img.shields.io/badge/OpenAI-API-green.svg)](https://openai.com/)
 [![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-orange.svg)](https://matplotlib.org/)
-[![PyWebIO](https://img.shields.io/badge/PyWebIO-Web%20UI-purple.svg)](https://pywebio.readthedocs.io/)
 
 [中文](README.md) | [English](README_EN.md)
 
@@ -18,13 +19,22 @@
 
 ## 📖 项目简介
 
-**DataVizAiAssistant** 是一个创新的开源工具，结合人工智能技术与数据可视化功能，帮助用户轻松从自然语言描述生成专业的数据可视化图表。项目使用GPT模型（通过OpenAI API或兼容接口）解析用户需求，自动生成Matplotlib可视化图表，并支持交互式修改。
+**DataVizAiAssistant** 是一个创新的开源工具，结合人工智能技术与数据可视化功能，帮助用户轻松从自然语言描述生成专业的数据可视化图表。项目使用大语言模型（通过 OpenAI 或兼容接口）解析用户需求，自动生成 Matplotlib 可视化图表，并支持对数据和样式的二次修改。
+
+项目采用**前后端分离**架构：
+
+| 模块 | 技术 | 说明 |
+|------|------|------|
+| **frontend/** | React + Vite | Web 界面（中文，蓝白主题） |
+| **backend/** | FastAPI | HTTP API，提供作图 / 编辑数据 / 编辑样式 三个接口 |
+| **workflow/** | Python | 图表生成引擎（多阶段 LLM 流水线 + Matplotlib 渲染） |
+| **skills/** | Python | CLI Skill，可作为 AI 助手插件使用 |
 
 ---
 
 ## 🚀 在线体验
 
-> **在线演示**：http://115.190.155.135:8080/  
+> **在线演示**：http://118.25.26.232:5173/  
 > **介绍视频**：https://www.bilibili.com/video/BV1tqYhzNEbx/
 
 ---
@@ -52,8 +62,8 @@
       <p>强制思考模式（深度推理）与快速执行模式（简化流程）自由切换</p>
     </td>
     <td align="center" width="33%">
-      <h3>☁️ 多种部署模式</h3>
-      <p>本地部署（全功能）与联机部署（适合云端服务器）</p>
+      <h3>🏗️ 前后端分离</h3>
+      <p>React 前端 + FastAPI 后端 + 独立图表引擎，支持局域网访问与端口隔离</p>
     </td>
     <td align="center" width="33%">
       <h3>🔒 安全可靠</h3>
@@ -68,68 +78,156 @@
 
 | 类别 | 技术 |
 |------|------|
-| **后端** | Python 3.10+ |
+| **前端** | React 18 + Vite |
+| **后端** | FastAPI + Uvicorn |
+| **图表引擎** | Python + Matplotlib |
 | **AI SDK** | OpenAI Python SDK |
-| **可视化** | Matplotlib |
-| **交互界面** | PyWebIO |
 
 ---
 
-## 📦 快速开始
+## 🧪 本地测试
 
-### 安装依赖
+适合在本机开发或快速体验。
 
-```bash
-pip install openai matplotlib pywebio python-dotenv
-```
+### 环境要求
 
-### 克隆项目
+- Python 3.10+
+- Node.js 18+（前端）
+
+### 1. 克隆项目
 
 ```bash
 git clone https://github.com/AlexisZ12/DataVizAiAssistant.git
 cd DataVizAiAssistant
 ```
 
-### 运行方式
+### 2. 配置 API 密钥
 
-#### 方式一：本地交互模式
+在项目根目录创建 `.env`：
 
-```bash
-python app.py
-```
-
-程序会自动打开浏览器，配置保存在本地。
-
-#### 方式二：云端部署模式
-
-程序默认运行在 http://<本机IP>:8080/
-
-**交互模式**：运行 `web.py`，启动后需在界面中输入 API Key 等配置，适合需要灵活切换配置的场景。
-
-**预配置模式**：运行 `web_preset.py`，从 `.env` 文件读取预设配置，适合一键启动或企业内部部署。
-
-1. 创建配置文件：
 ```bash
 cp .env.example .env
 ```
 
-2. 编辑 `.env` 文件：
+编辑 `.env` 填入你的 LLM 配置：
+
 ```env
 API_KEY=your-api-key-here
 BASE_URL=https://api.openai.com/v1
 MODEL=gpt-4o
 ```
 
-3. 启动服务：
+> 也可以不填 `.env`，在前端「高级设置」里临时输入 API Key / Base URL / 模型。
+
+### 3. 安装依赖
+
 ```bash
-python web_preset.py
+# Python 依赖（后端 + 图表引擎）
+pip install -r backend/requirements.txt
+
+# 前端依赖
+cd frontend && npm install && cd ..
 ```
 
-#### 方式三：Skill / CLI 模式
+### 4. 启动后端
+
+```bash
+python3 -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
+```
+
+### 5. 启动前端
+
+新开一个终端：
+
+```bash
+cd frontend
+npm run dev
+```
+
+### 6. 访问
+
+浏览器打开 **http://localhost:5173**，输入需求描述即可生成图表。
+
+---
+
+## 🚀 服务器部署
+
+适合把服务部署到局域网或公网服务器，供他人访问。
+
+架构特点：**前端对局域网开放，后端只监听本机回环地址**。局域网用户通过前端访问服务，但无法直接调用后端 API 端口。
+
+### 1. 安装依赖（同上）
+
+```bash
+pip install -r backend/requirements.txt
+cd frontend && npm install && cd ..
+```
+
+### 2. 配置 `.env`（同上）
+
+### 3. 启动后端（绑定本机，不对外暴露）
+
+```bash
+cd DataVizAiAssistant
+setsid nohup python3 -m uvicorn backend.app.main:app \
+  --host 127.0.0.1 --port 8000 \
+  > /tmp/dataviz_backend.log 2>&1 < /dev/null &
+```
+
+### 4. 构建并启动前端
+
+```bash
+cd DataVizAiAssistant/frontend
+npm run build            # 生成静态文件到 dist/
+setsid nohup npm run preview > /tmp/dataviz_frontend.log 2>&1 < /dev/null &
+```
+
+> `preview` 会把 `/api` 请求转发给本机 `127.0.0.1:8000` 的后端。代码更新后需重新 `npm run build`。
+
+### 5. 放行前端端口（只放 5173，不放后端 8000）
+
+```bash
+# ufw（Ubuntu/Debian）
+sudo ufw allow 5173/tcp
+
+# firewalld（CentOS/RHEL）
+sudo firewall-cmd --permanent --add-port=5173/tcp && sudo firewall-cmd --reload
+```
+
+> 云服务器（阿里云/腾讯云/AWS）还需在**安全组**里放行 5173。后端 8000 绑的是本机回环地址，无需也不应放行。
+
+### 6. 验证
+
+```bash
+# 后端健康检查
+curl http://127.0.0.1:8000/api/health      # {"status":"ok"}
+
+# 前端 + 代理
+curl http://127.0.0.1:5173/api/health      # {"status":"ok"}
+```
+
+浏览器访问 **http://服务器IP:5173**。
+
+### 日志与停止
+
+```bash
+tail -f /tmp/dataviz_backend.log     # 后端日志
+tail -f /tmp/dataviz_frontend.log    # 前端日志
+
+# 停止
+pkill -f "uvicorn backend.app.main" 2>/dev/null
+pkill -f "vite preview" 2>/dev/null
+```
+
+> **长期运行建议**：用 `systemd` 将前后端注册成服务，实现开机自启和崩溃自动拉起。
+
+---
+
+## 🔌 Skill / CLI 模式
 
 将图表生成能力作为命令行工具或 AI 编程助手 Skill 使用，无 Web UI 依赖，输出为 PNG 文件。
 
-##### 安装
+### 安装
 
 ```bash
 # 1. 安装 Python 依赖
@@ -149,7 +247,7 @@ cp -r skills/dataviz-ai ~/.copaw/skill_pool/dataviz-ai
 
 安装完成后，在对应平台对话中直接调用 `/dataviz-ai` 即可使用。
 
-##### 基本用法
+### 基本用法
 
 **方式一：安装为平台技能（推荐）**
 
@@ -179,14 +277,14 @@ python dataviz_ai.py "画出2024年各月销售额趋势，1月100,2月200,3月1
 python dataviz_ai.py "画出上海和北京各季度GDP对比" -o ./chart.png
 ```
 
-##### 参数说明
+### 参数说明
 
 | 参数 | 必需 | 说明 |
 |------|:----:|------|
 | `description` | 是 | 位置参数，自然语言描述要生成的图表 |
 | `-o`, `--output` | 否 | 输出图片路径，不指定则保存到临时目录 |
 
-##### 环境变量
+### 环境变量
 
 | 变量 | 必需 | 说明 |
 |------|:----:|------|
