@@ -146,7 +146,7 @@ npm run dev
 
 ### 6. 访问
 
-浏览器打开 **http://localhost:5173**，输入需求描述即可生成图表。
+浏览器打开 http://localhost:5173，输入需求描述即可生成图表。
 
 ---
 
@@ -206,7 +206,7 @@ curl http://127.0.0.1:8000/api/health      # {"status":"ok"}
 curl http://127.0.0.1:5173/api/health      # {"status":"ok"}
 ```
 
-浏览器访问 **http://服务器IP:5173**。
+浏览器访问 http://服务器IP:5173。
 
 ### 日志与停止
 

@@ -146,7 +146,7 @@ npm run dev
 
 ### 6. Access
 
-Open **http://localhost:5173** in your browser, enter a description, and generate charts.
+Open http://localhost:5173 in your browser, enter a description, and generate charts.
 
 ---
 
@@ -206,7 +206,7 @@ curl http://127.0.0.1:8000/api/health      # {"status":"ok"}
 curl http://127.0.0.1:5173/api/health      # {"status":"ok"}
 ```
 
-Open **http://server-ip:5173** in your browser.
+Open http://server-ip:5173 in your browser.
 
 ### Logs & Stop
 
