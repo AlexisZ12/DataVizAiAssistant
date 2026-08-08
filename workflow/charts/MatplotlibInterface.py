@@ -1,6 +1,11 @@
+import logging
+
 import matplotlib.pyplot as plt
 import matplotlib
+from matplotlib import font_manager
 import numpy as np
+
+logger = logging.getLogger(__name__)
 
 MARKER = ['.', ',', 'o', 'v', '^', '<', '>', '1', '2', '3', '4', '8', 's', 'p', '*', 'h', 'H', '+', 'x', 'D', 'd', '|', '_', 'P', 'X', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ' ']
 LINESTYLE = ['-', ':', '--', '-.', ' ']
@@ -8,7 +13,35 @@ HATCHSTYLE = ['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*', ' ']
 # COLOR = ['black', 'silver', 'gray', 'white', 'maroon', 'red', 'purple', 'fuchsia', 'green', 'lime', 'olive', 'yellow', 'navy', 'blue', 'teal', 'aqua']
 COLOR = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w', 'orange', 'pink']
 
-matplotlib.rcParams['font.sans-serif']=['SimHei','Songti SC','STFangsong']
+# 常见中文字体列表（跨平台候选，按优先级排序）
+CHINESE_FONTS = [
+    'WenQuanYi Zen Hei',   # Linux 开源黑体
+    'WenQuanYi Micro Hei', # Linux 开源黑体
+    'Noto Sans CJK SC',    # Google 思源黑体
+    'Noto Sans CJK',
+    'SimHei',              # Windows 黑体
+    'Songti SC',           # macOS 宋体
+    'STFangsong',          # macOS 仿宋
+    'PingFang SC',         # macOS 苹方
+    'Hiragino Sans GB',    # macOS 冬青黑体
+    'Microsoft YaHei',     # Windows 微软雅黑
+]
+
+
+def _setup_chinese_font():
+    """从系统已安装字体中找第一个可用的中文字体，找不到则打印警告。"""
+    available = {f.name for f in font_manager.fontManager.ttflist}
+    for font in CHINESE_FONTS:
+        if font in available:
+            matplotlib.rcParams['font.sans-serif'] = [font, 'sans-serif']
+            logger.info("使用中文字体: %s", font)
+            return
+    # 没找到任何中文字体，打印警告
+    logger.warning("未找到中文字体，中文可能显示为方框。请安装中文字体，如：")
+    logger.warning("  Ubuntu/Debian: sudo apt-get install fonts-wqy-zenhei")
+    logger.warning("  CentOS/RHEL:   sudo yum install wqy-zenhei-fonts")
+
+_setup_chinese_font()
 matplotlib.rcParams['axes.unicode_minus'] = False
 
 def PlotInterface(X_value, Y_value, Y_value_label,

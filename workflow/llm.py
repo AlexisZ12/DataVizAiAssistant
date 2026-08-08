@@ -1,6 +1,9 @@
 """LLM 调用与 JSON 容错：提取、校验、失败自动重试（对齐原 function.py 逻辑）。"""
 
 import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def extract_json(text):
@@ -25,7 +28,7 @@ def call_and_parse(client, model, base_messages, validator=None):
         out = client.chat.completions.create(
             model=model, messages=messages
         ).choices[0].message.content
-        print(out)
+        logger.info("LLM 返回: %s", out)
         try:
             result = extract_json(out)
             if validator:

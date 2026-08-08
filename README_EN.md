@@ -196,7 +196,31 @@ sudo firewall-cmd --permanent --add-port=5173/tcp && sudo firewall-cmd --reload
 
 > For cloud servers (Aliyun/Tencent/AWS), also open port 5173 in the **security group**. Backend port 8000 is bound to localhost—no need and should not be opened.
 
-### 6. Verify
+### 6. Install Chinese Fonts (required on Linux servers)
+
+Linux servers don't have Chinese fonts by default, causing Chinese characters in charts to display as squares. Install and restart:
+
+```bash
+# Ubuntu/Debian
+sudo apt-get update && sudo apt-get install -y fonts-wqy-zenhei
+
+# CentOS/RHEL 8+ / Rocky / Alma
+sudo dnf install -y google-noto-sans-cjk-fonts
+
+# Clear matplotlib font cache to re-scan (cache path varies by system; resolved dynamically)
+rm -rf "$(python3 -c 'import matplotlib; print(matplotlib.get_cachedir())')"
+
+# Restart backend
+pkill -f "uvicorn backend.app.main" 2>/dev/null
+cd DataVizAiAssistant
+setsid nohup python3 -m uvicorn backend.app.main:app \
+  --host 127.0.0.1 --port 8000 \
+  > /tmp/dataviz_backend.log 2>&1 < /dev/null &
+```
+
+> The program automatically detects available Chinese fonts (WenQuanYi / Noto Sans CJK / SimHei / Songti SC, etc.), picking the first usable one in order, and prints a warning with installation hints if none found.
+
+### 7. Verify
 
 ```bash
 # Backend health check

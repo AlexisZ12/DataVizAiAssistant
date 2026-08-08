@@ -196,7 +196,31 @@ sudo firewall-cmd --permanent --add-port=5173/tcp && sudo firewall-cmd --reload
 
 > 云服务器（阿里云/腾讯云/AWS）还需在**安全组**里放行 5173。后端 8000 绑的是本机回环地址，无需也不应放行。
 
-### 6. 验证
+### 6. 安装中文字体（Linux 服务器必需）
+
+服务器默认没有中文字体，图表中的中文会显示为方框。安装并重启：
+
+```bash
+# Ubuntu/Debian
+sudo apt-get update && sudo apt-get install -y fonts-wqy-zenhei
+
+# CentOS/RHEL 8+ / Rocky / Alma
+sudo dnf install -y google-noto-sans-cjk-fonts
+
+# 清除 matplotlib 字体缓存，让它重新扫描（缓存路径因系统而异，动态获取）
+rm -rf "$(python3 -c 'import matplotlib; print(matplotlib.get_cachedir())')"
+
+# 重启后端
+pkill -f "uvicorn backend.app.main" 2>/dev/null
+cd DataVizAiAssistant
+setsid nohup python3 -m uvicorn backend.app.main:app \
+  --host 127.0.0.1 --port 8000 \
+  > /tmp/dataviz_backend.log 2>&1 < /dev/null &
+```
+
+> 程序会自动探测系统中可用的中文字体（文泉驿 / Noto Sans CJK / SimHei / 宋体等），按候选顺序挑第一个可用的，找不到时打印警告提示。
+
+### 7. 验证
 
 ```bash
 # 后端健康检查
