@@ -438,3 +438,66 @@ body {
     transform: rotate(360deg);
   }
 }
+
+/* ===== 刷星横幅 ===== */
+.star-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 9px 44px;
+  background: linear-gradient(135deg, var(--blue-600), var(--blue-500));
+  color: #ffffff;
+  font-size: 13px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.star-banner-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.5;
+}
+
+.star-banner-star {
+  font-size: 15px;
+}
+
+.star-banner-btn {
+  display: inline-block;
+  background: #ffffff;
+  color: var(--blue-600);
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.star-banner-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.star-banner-close {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  border-radius: 6px;
+}
+
+.star-banner-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import StarBanner from './components/StarBanner'
 import Header from './components/Header'
 import GenerateForm from './components/GenerateForm'
 import ResultPanel from './components/ResultPanel'
@@ -32,7 +33,7 @@ export default function App() {
   }
 
   const handleGenerate = (description) =>
-    run('AI 正在分析需求并绘制图表，通常需要 10~60 秒，请稍候…', () =>
+    run('AI 正在分析需求并绘制图表，通常需要 1~3 分钟，请稍候…', () =>
       generateChart({ description, thinking, ...provider() }),
     )
 
@@ -48,6 +49,7 @@ export default function App() {
 
   return (
     <div className="page">
+      <StarBanner />
       <Header />
       <main className="container main">
         {error && <div className="error-banner">{error}</div>}
