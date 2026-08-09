@@ -160,7 +160,6 @@ Architecture: **frontend is open to the LAN, backend only listens on localhost**
 
 ```bash
 pip install -r backend/requirements.txt
-cd frontend && npm install && cd ..
 ```
 
 ### 2. Configure `.env` (same as above)
@@ -191,7 +190,7 @@ cd DataVizAiAssistant && setsid nohup uvicorn backend.app.main:app --host 127.0.
 ### 5. Build and Start Frontend
 
 ```bash
-cd DataVizAiAssistant/frontend && npm run build && setsid nohup npm run preview > /tmp/dataviz_frontend.log 2>&1 < /dev/null &
+cd DataVizAiAssistant/frontend && npm install && npm run build && setsid nohup npm run preview > /tmp/dataviz_frontend.log 2>&1 < /dev/null &
 ```
 
 > `preview` proxies `/api` requests to the backend at `127.0.0.1:8000`. Re-run `npm run build` after code changes.

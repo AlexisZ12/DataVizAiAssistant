@@ -160,7 +160,6 @@ npm run dev
 
 ```bash
 pip install -r backend/requirements.txt
-cd frontend && npm install && cd ..
 ```
 
 ### 2. 配置 `.env`（同上）
@@ -191,7 +190,7 @@ cd DataVizAiAssistant && setsid nohup uvicorn backend.app.main:app --host 127.0.
 ### 5. 构建并启动前端
 
 ```bash
-cd DataVizAiAssistant/frontend && npm run build && setsid nohup npm run preview > /tmp/dataviz_frontend.log 2>&1 < /dev/null &
+cd DataVizAiAssistant/frontend && npm install && npm run build && setsid nohup npm run preview > /tmp/dataviz_frontend.log 2>&1 < /dev/null &
 ```
 
 > `preview` 会把 `/api` 请求转发给本机 `127.0.0.1:8000` 的后端。代码更新后需重新 `npm run build`。
