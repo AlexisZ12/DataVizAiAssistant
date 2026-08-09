@@ -165,40 +165,9 @@ cd frontend && npm install && cd ..
 
 ### 2. 配置 `.env`（同上）
 
-### 3. 启动后端（绑定本机，不对外暴露）
+### 3. 安装中文字体（Linux 服务器必需）
 
-```bash
-cd DataVizAiAssistant
-setsid nohup uvicorn backend.app.main:app \
-  --host 127.0.0.1 --port 8000 \
-  > /tmp/dataviz_backend.log 2>&1 < /dev/null &
-```
-
-### 4. 构建并启动前端
-
-```bash
-cd DataVizAiAssistant/frontend
-npm run build            # 生成静态文件到 dist/
-setsid nohup npm run preview > /tmp/dataviz_frontend.log 2>&1 < /dev/null &
-```
-
-> `preview` 会把 `/api` 请求转发给本机 `127.0.0.1:8000` 的后端。代码更新后需重新 `npm run build`。
-
-### 5. 放行前端端口（只放 5173，不放后端 8000）
-
-```bash
-# ufw（Ubuntu/Debian）
-sudo ufw allow 5173/tcp
-
-# firewalld（CentOS/RHEL）
-sudo firewall-cmd --permanent --add-port=5173/tcp && sudo firewall-cmd --reload
-```
-
-> 云服务器（阿里云/腾讯云/AWS）还需在**安全组**里放行 5173。后端 8000 绑的是本机回环地址，无需也不应放行。
-
-### 6. 安装中文字体（Linux 服务器必需）
-
-服务器默认没有中文字体，图表中的中文会显示为方框。安装并重启：
+服务器默认没有中文字体，图表中的中文会显示为方框。安装后再启动后端：
 
 ```bash
 # Ubuntu/Debian
@@ -209,16 +178,35 @@ sudo dnf install -y google-noto-sans-cjk-fonts
 
 # 清除 matplotlib 字体缓存，让它重新扫描（缓存路径因系统而异，动态获取）
 rm -rf "$(python3 -c 'import matplotlib; print(matplotlib.get_cachedir())')"
-
-# 重启后端
-pkill -f "uvicorn backend.app.main" 2>/dev/null
-cd DataVizAiAssistant
-setsid nohup python3 -m uvicorn backend.app.main:app \
-  --host 127.0.0.1 --port 8000 \
-  > /tmp/dataviz_backend.log 2>&1 < /dev/null &
 ```
 
 > 程序会自动探测系统中可用的中文字体（文泉驿 / Noto Sans CJK / SimHei / 宋体等），按候选顺序挑第一个可用的，找不到时打印警告提示。
+
+### 4. 启动后端（绑定本机，不对外暴露）
+
+```bash
+cd DataVizAiAssistant && setsid nohup uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 > /tmp/dataviz_backend.log 2>&1 < /dev/null &
+```
+
+### 5. 构建并启动前端
+
+```bash
+cd DataVizAiAssistant/frontend && npm run build && setsid nohup npm run preview > /tmp/dataviz_frontend.log 2>&1 < /dev/null &
+```
+
+> `preview` 会把 `/api` 请求转发给本机 `127.0.0.1:8000` 的后端。代码更新后需重新 `npm run build`。
+
+### 6. 放行前端端口（只放 5173，不放后端 8000）
+
+```bash
+# ufw（Ubuntu/Debian）
+sudo ufw allow 5173/tcp
+
+# firewalld（CentOS/RHEL）
+sudo firewall-cmd --permanent --add-port=5173/tcp && sudo firewall-cmd --reload
+```
+
+> 云服务器（阿里云/腾讯云/AWS）还需在**安全组**里放行 5173。后端 8000 绑的是本机回环地址，无需也不应放行。
 
 ### 7. 验证
 
@@ -241,6 +229,10 @@ tail -f /tmp/dataviz_frontend.log    # 前端日志
 # 停止
 pkill -f "uvicorn backend.app.main" 2>/dev/null
 pkill -f "vite preview" 2>/dev/null
+
+# 快速按端口停止（8000 后端 / 5173 前端）
+kill -9 $(lsof -t -i:8000 -i:5173) 2>/dev/null
+# Linux 也可用：fuser -k 8000/tcp 5173/tcp
 ```
 
 > **长期运行建议**：用 `systemd` 将前后端注册成服务，实现开机自启和崩溃自动拉起。

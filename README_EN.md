@@ -165,40 +165,9 @@ cd frontend && npm install && cd ..
 
 ### 2. Configure `.env` (same as above)
 
-### 3. Start Backend (localhost only, not exposed)
+### 3. Install Chinese Fonts (required on Linux servers)
 
-```bash
-cd DataVizAiAssistant
-setsid nohup uvicorn backend.app.main:app \
-  --host 127.0.0.1 --port 8000 \
-  > /tmp/dataviz_backend.log 2>&1 < /dev/null &
-```
-
-### 4. Build and Start Frontend
-
-```bash
-cd DataVizAiAssistant/frontend
-npm run build            # generates static files into dist/
-setsid nohup npm run preview > /tmp/dataviz_frontend.log 2>&1 < /dev/null &
-```
-
-> `preview` proxies `/api` requests to the backend at `127.0.0.1:8000`. Re-run `npm run build` after code changes.
-
-### 5. Open Frontend Port (5173 only, not backend 8000)
-
-```bash
-# ufw (Ubuntu/Debian)
-sudo ufw allow 5173/tcp
-
-# firewalld (CentOS/RHEL)
-sudo firewall-cmd --permanent --add-port=5173/tcp && sudo firewall-cmd --reload
-```
-
-> For cloud servers (Aliyun/Tencent/AWS), also open port 5173 in the **security group**. Backend port 8000 is bound to localhost—no need and should not be opened.
-
-### 6. Install Chinese Fonts (required on Linux servers)
-
-Linux servers don't have Chinese fonts by default, causing Chinese characters in charts to display as squares. Install and restart:
+Linux servers don't have Chinese fonts by default, causing Chinese characters in charts to display as squares. Install them before starting the backend:
 
 ```bash
 # Ubuntu/Debian
@@ -209,16 +178,35 @@ sudo dnf install -y google-noto-sans-cjk-fonts
 
 # Clear matplotlib font cache to re-scan (cache path varies by system; resolved dynamically)
 rm -rf "$(python3 -c 'import matplotlib; print(matplotlib.get_cachedir())')"
-
-# Restart backend
-pkill -f "uvicorn backend.app.main" 2>/dev/null
-cd DataVizAiAssistant
-setsid nohup python3 -m uvicorn backend.app.main:app \
-  --host 127.0.0.1 --port 8000 \
-  > /tmp/dataviz_backend.log 2>&1 < /dev/null &
 ```
 
 > The program automatically detects available Chinese fonts (WenQuanYi / Noto Sans CJK / SimHei / Songti SC, etc.), picking the first usable one in order, and prints a warning with installation hints if none found.
+
+### 4. Start Backend (localhost only, not exposed)
+
+```bash
+cd DataVizAiAssistant && setsid nohup uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 > /tmp/dataviz_backend.log 2>&1 < /dev/null &
+```
+
+### 5. Build and Start Frontend
+
+```bash
+cd DataVizAiAssistant/frontend && npm run build && setsid nohup npm run preview > /tmp/dataviz_frontend.log 2>&1 < /dev/null &
+```
+
+> `preview` proxies `/api` requests to the backend at `127.0.0.1:8000`. Re-run `npm run build` after code changes.
+
+### 6. Open Frontend Port (5173 only, not backend 8000)
+
+```bash
+# ufw (Ubuntu/Debian)
+sudo ufw allow 5173/tcp
+
+# firewalld (CentOS/RHEL)
+sudo firewall-cmd --permanent --add-port=5173/tcp && sudo firewall-cmd --reload
+```
+
+> For cloud servers (Aliyun/Tencent/AWS), also open port 5173 in the **security group**. Backend port 8000 is bound to localhost—no need and should not be opened.
 
 ### 7. Verify
 
@@ -241,6 +229,10 @@ tail -f /tmp/dataviz_frontend.log    # frontend logs
 # Stop
 pkill -f "uvicorn backend.app.main" 2>/dev/null
 pkill -f "vite preview" 2>/dev/null
+
+# Stop by port (backend 8000 / frontend 5173)
+kill -9 $(lsof -t -i:8000 -i:5173) 2>/dev/null
+# Linux alternative: fuser -k 8000/tcp 5173/tcp
 ```
 
 > **For long-running deployments**: use `systemd` to register frontend and backend as services for auto-start and auto-restart on failure.
